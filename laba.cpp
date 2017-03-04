@@ -3,6 +3,14 @@
 
 using namespace std;
 
+double **Sum(double **,double **,int,int,int,int); //A=Sum(B,C,Bn,Bm,Cn,Cm);
+double **MulNum(double **,int,int,double); //A=MulNum(B,Bn,Bm,digit)
+double **Mul(double **,double **,int,int,int,int); //A=Mul(B,C,Bn,Bm,Cn,Cm);
+double **Trans(double **,int,int); //A=Trans(A);
+double **Calculate(string); //A=Calculate("(A+B)*C");
+double Determinate(double **,int,int); //det=Determinate(A,An,Am);
+void TypeMatr(double **,int,int); //TypeMatr(A,An);
+
 int main()
 {
 	int line1, line2, column1, column2;
