@@ -21,13 +21,13 @@ int main()
     while(count)
     {
         cout<<"Choose the command:"<<endl;
-        cout<<"0.Exit"<<endl //Ð²Ñ‹Ñ…Ð¾Ð´
-        cout<<"1.Multiplication of a matrix by number"<<endl; //ÑƒÐ¼Ð½Ð¾Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð°Ñ‚Ñ€Ð¸Ñ†Ñ‹ Ð½Ð° Ñ‡Ð¸ÑÐ»Ð¾
-        cout<<"2.Multiplication of matrixes"<<endl; //Ð¿ÐµÑ€ÐµÐ¼Ð½Ð¾Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð°Ñ‚Ñ€Ð¸Ñ†
-        cout<<"3.Transposing"<<endl; //Ñ‚Ñ€Ð°Ð½ÑÐ¿Ð¾Ð½Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ
-        cout<<"4.to calculate determinant" //Ð²Ñ‹Ñ‡Ð¸ÑÐ»ÐµÐ½Ð¸Ðµ Ð¾Ð¿Ñ€ÐµÐ´ÐµÐ»Ð¸Ñ‚ÐµÐ»Ñ
-        cout<<"5.to define a type of a matrix"<<endl; //Ð¾Ð¿Ñ€ÐµÐ´ÐµÐ»Ð¸Ñ‚ÑŒ Ð²Ð¸Ð» Ð¼Ð°Ñ‚Ñ€Ð¸Ñ†Ñ‹
-        cout<<"6.calculation of expressions from a matrix" //Ð¿Ð¾Ð´ÑÑ‡ÐµÑ‚ Ð²Ñ‹Ñ€Ð°Ð¶ÐµÐ½Ð¸Ð¹ Ð¸Ð· Ð¼Ð°Ñ‚Ñ€Ð¸Ñ†Ñ‹
+        cout<<"0.Exit"<<endl //Âûõîä
+        cout<<"1.Multiplication of a matrix by number"<<endl; //Óìíîæåíèå ìàòðèö íà ÷èñëî
+        cout<<"2.Multiplication of matrixes"<<endl; //Óìíîæåíèå ìàòðèö
+        cout<<"3.Transposing"<<endl; //Òðàíñïîíèðîâàíèå
+        cout<<"4.to calculate determinant" //Ïîñ÷èòàòü îïðåäåëèòåëü
+        cout<<"5.to define a type of a matrix"<<endl; //Îïðåäåëèòü òèï ìàòðèöû
+        cout<<"6.calculation of expressions from a matrix" //Ïîñ÷èòàòü âûðàæåíèÿ èç ìàòðèöû
         cin>>count;
         switch (count)
         {
