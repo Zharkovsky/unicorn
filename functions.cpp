@@ -1,5 +1,7 @@
 #include <iostream>
 #include <iomanip>
+#include <ctime>
+
 using namespace std;
 
 double **MulNum(double **A,int n,int m,double digit)
@@ -62,4 +64,12 @@ double ** multiplication(double **A, double **B, int lineA, int columnA, int lin
 				result[i][j] += A[i][k]*B[k][j];
 				
 	return result;
+}
+
+double ** Random(double **A, int lineA, int columnA)
+{
+	for (int i = 0; i < lineA ; i++)
+		for (int j = 0; j < columnA ; j++)
+			A[i][j] = rand()%20+1;
+	return A;
 }
