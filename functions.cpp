@@ -43,3 +43,23 @@ double **Trans(double **A,int n,int m)
             B[j][i]=A[i][j];
     return B;
 }
+
+double ** multiplication(double **A, double **B, int lineA, int columnA, int lineB, int columnB)
+{
+	double **result = new double *[lineA];
+	for (int i = 0; i < lineA; i++)
+		result[i] = new double [columnB];
+		
+	if (columnA != lineB)
+		{
+			cout << "Dimension error. Try again." << endl;
+			return 0;
+		}
+		
+	for (int i = 0; i < lineA; i++)
+		for (int j = 0; j < columnB; j++)
+			for (int k =0; k < lineB; k++)
+				result[i][j] += A[i][k]*B[k][j];
+				
+	return result;
+}
