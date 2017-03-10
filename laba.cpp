@@ -6,28 +6,28 @@ using namespace std;
 int main()
 {
 	int line1, line2, column1, column2;
-	float number;   					// ЛњГ‹Г’ГЋГ“ вЂ°ГЋЛ‡ Г›ГЏГЊГ“ГЉГ‚ГЊГ‹Л‡ 
+	double number;   					// ЛњГ‹Г’ГЋГ“ вЂ°ГЋЛ‡ Г›ГЏГЊГ“ГЉГ‚ГЊГ‹Л‡ 
 	
-	float ** A = new float *[line1];
-	float ** B = new float *[line2];
+	double ** A = new double *[line1];
+	double ** B = new double *[line2];
 		
 	for (int i = 0; i < line1 ; i++)
-		A[i] = new float [column1];
+		A[i] = new double [column1];
 		
 	for (int i = 0; i < line2 ; i++)
-		B[i] = new float [column2];
+		B[i] = new double [column2];
     
     int count=1;
     while(count)
     {
         cout<<"Choose the command:"<<endl;
-        cout<<"0.Exit"<<endl //Выход
+        cout<<"0.Exit"<<endl; //Выход
         cout<<"1.Multiplication of a matrix by number"<<endl; //Умножение матриц на число
         cout<<"2.Multiplication of matrixes"<<endl; //Умножение матриц
         cout<<"3.Transposing"<<endl; //Транспонирование
-        cout<<"4.to calculate determinant" //Посчитать определитель
+        cout<<"4.to calculate determinant"<< endl; //Посчитать определитель
         cout<<"5.to define a type of a matrix"<<endl; //Определить тип матрицы
-        cout<<"6.calculation of expressions from a matrix" //Посчитать выражения из матрицы
+        cout<<"6.calculation of expressions from a matrix"<< endl; //Посчитать выражения из матрицы
         cin>>count;
         switch (count)
         {
