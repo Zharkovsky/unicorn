@@ -5,6 +5,7 @@ using namespace std;
 
 int main()
 {
+	srand(time(0));
 	int line1, line2, column1, column2;
 	double number;   					// ˜ËÒÎÓ ‰Îˇ ÛÏÌÓÊÂÌËˇ 
 	
