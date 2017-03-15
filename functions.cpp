@@ -5,6 +5,14 @@
 
 using namespace std;
 
+double **newmatrix (int line, int column)
+{
+	double **matrix = new double *[line];
+	for (int i = 0; i < line; i++)
+		matrix[i] = new double [column];
+	return matrix;
+}
+
 double **MulNum(double **A,int n,int m,double digit)
 {
     for (int i=0;i<n;i++)
@@ -82,9 +90,7 @@ double **Trans(double **A,int n,int m)
 
 double ** multiplication(double **A, double **B, int lineA, int columnA, int lineB, int columnB)
 {
-	double **result = new double *[lineA];
-	for (int i = 0; i < lineA; i++)
-		result[i] = new double [columnB];
+	double **result = newmatrix(lineA, columnB);
 		
 	if (columnA != lineB)
 		{
