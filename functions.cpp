@@ -22,7 +22,7 @@ double **MulNum(double **A,int n,int m,double digit)
     return A;
 }
 
-void show(float **a, int n,int m)
+void show(double **a, int n,int m)
 {
     for(int i=0;i<n;i++)
     {
@@ -33,11 +33,11 @@ void show(float **a, int n,int m)
 }
 
 
-float determinant(float **a,int size)
+double Determinate(double **a,int size)
 {
  int i,j;
  double det=0;
- float**matr;
+ double**matr;
  if(size==1)
  {
   det=a[0][0];
@@ -48,7 +48,7 @@ float determinant(float **a,int size)
  }
  else
  {
-  matr=new float*[size-1];
+  matr=new double*[size-1];
   for(i=0;i<size;++i)
   {
    for(j=0;j<size-1;++j)
@@ -58,7 +58,7 @@ float determinant(float **a,int size)
     else
      matr[j]=a[j+1];
    }
-   det+=pow((float)-1,(i+j))*determinant(matr, size-1)*a[i][size-1];
+   det+=pow((double)-1,(i+j))*Determinate(matr, size-1)*a[i][size-1];
   }
   delete[] matr;
  }
@@ -66,10 +66,20 @@ return det;
 }
 
 double **Sum(double **A,double **B,int An,int Am,int Bn,int Bm)
-{
-    if(An!=Bn || Am!=Bm) return NULL;
+{	
+    if(An!=Bn || Am!=Bm) 
+    {
+    	cout<<"Error. Try Again."<<endl;
+		double **C = new double*[An];
+		for(int i=0;i<An;i++)
+        	C[i] = new double[Am];
+        for(int i=0;i<An;i++)
+        	for(int j=0;j<Am;j++)
+            	C[i][j]=0.0;
+    	return C;
+    }
     double **C = new double *[An];
-    for(int i=0;i<Am;i++)
+    for(int i=0;i<An;i++)
         C[i] = new double [Am];
     for(int i=0;i<An;i++)
         for(int j=0;j<Am;j++)
@@ -88,14 +98,20 @@ double **Trans(double **A,int n,int m)
     return B;
 }
 
-double ** multiplication(double **A, double **B, int lineA, int columnA, int lineB, int columnB)
+double ** Multiplication(double **A, double **B, int lineA, int columnA, int lineB, int columnB)
 {
 	double **result = newmatrix(lineA, columnB);
 		
 	if (columnA != lineB)
 		{
 			cout << "Dimension error. Try again." << endl;
-			return 0;
+			double **C = new double*[An];
+			for(int i=0;i<An;i++)
+        		C[i] = new double[Am];
+        	for(int i=0;i<An;i++)
+        		for(int j=0;j<Am;j++)
+            		C[i][j]=0.0;
+    		return C;
 		}
 		
 	for (int i = 0; i < lineA; i++)
@@ -106,21 +122,13 @@ double ** multiplication(double **A, double **B, int lineA, int columnA, int lin
 	return result;
 }
 
-double ** Random(double **A, int lineA, int columnA)
+/*double ** Random(double **A, int lineA, int columnA)
 {
 	for (int i = 0; i < lineA ; i++)
 		for (int j = 0; j < columnA ; j++)
 			A[i][j] = rand()%20+1;
 	return A;
-}
-
-double ** Random(double **A, int lineA, int columnA)
-{
-	for (int i = 0; i < lineA ; i++)
-		for (int j = 0; j < columnA ; j++)
-			A[i][j] = rand()%20+1;
-	return A;
-}
+}*/
 
 void DelMatr(double **A, int lineA)
 {
@@ -128,4 +136,3 @@ void DelMatr(double **A, int lineA)
       delete[] A[i];
      delete [] A;
 }
-
