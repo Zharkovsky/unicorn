@@ -114,3 +114,18 @@ double ** Random(double **A, int lineA, int columnA)
 	return A;
 }
 
+double ** Random(double **A, int lineA, int columnA)
+{
+	for (int i = 0; i < lineA ; i++)
+		for (int j = 0; j < columnA ; j++)
+			A[i][j] = rand()%20+1;
+	return A;
+}
+
+void DelMatr(double **A, int lineA)
+{
+     for (int i = 0; i < lineA; ++i)
+      delete[] A[i];
+     delete [] A;
+}
+
