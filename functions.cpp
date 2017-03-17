@@ -105,11 +105,11 @@ double ** Multiplication(double **A, double **B, int lineA, int columnA, int lin
 	if (columnA != lineB)
 		{
 			cout << "Dimension error. Try again." << endl;
-			double **C = new double*[An];
-			for(int i=0;i<An;i++)
-        		C[i] = new double[Am];
-        	for(int i=0;i<An;i++)
-        		for(int j=0;j<Am;j++)
+			double **C = new double*[lineA];
+			for(int i=0;i<lineA;i++)
+        		C[i] = new double[columnA];
+        	for(int i=0;i<lineA;i++)
+        		for(int j=0;j<columnA;j++)
             		C[i][j]=0.0;
     		return C;
 		}
@@ -136,3 +136,4 @@ void DelMatr(double **A, int lineA)
       delete[] A[i];
      delete [] A;
 }
+
