@@ -142,8 +142,10 @@ int main()
             cin>>k;
             if (k == 1)
             {
+                DelMatr(A,line1);
             	cout<<"Enter size of matrix (n and m): ";
             	cin>>line1>>column1;
+                
             	A = newmatrix(line1,column1);
     	        cout<<"Enter matrix: \n";
     	        for (int i=0;i<line1;i++)
@@ -152,17 +154,20 @@ int main()
             }
             else
             {
+                DelMatr(A,line1);
     	        cout<<"Enter size of first matrix (n and m): ";
             	cin>>line1>>column1;
+                
             	A = newmatrix(line1,column1);
 	
             	cout<<"Enter matrix: \n";
             	for (int i=0;i<line1;i++)
     		        for (int j=0;j<column1;j++)
     		        	cin>>A[i][j];
-    			
+    			DelMatr(B,line2);
             	cout<<"Enter size of second matrix (n and m): ";
             	cin>>line2>>column2;
+                
 	        	B = newmatrix(line2,column2);
     	        cout<<"Enter matrix: \n";
     	        for (int i=0;i<line2;i++)

@@ -89,9 +89,9 @@ double **Sum(double **A,double **B,int An,int Am,int Bn,int Bm)
 
 double **Trans(double **A,int n,int m)
 {
-    double **B = new double*[n];
+    double **B = new double*[m];
     for(int i=0;i<m;i++)
-        B[i] = new double [m];
+        B[i] = new double [n];
     for(int i=0;i<n;i++)
         for(int j=0;j<m;j++)
             B[j][i]=A[i][j];
