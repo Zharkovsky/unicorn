@@ -209,19 +209,19 @@ void TypeMatr(double **A,int n,int m)
 	{
 		for(int j=0;j<m;j++)
 		{
-			if(i>j && A[i][j]!=0) temp=false;
+			if(i<j && A[i][j]!=0) temp=false;
 		}
 	}
-	if(temp) cout<<" upper diagonal";
+	if(temp) cout<<" lower diagonal";
 	temp=true;
 	for(int i=0;i<n;i++)
 	{
 		for(int j=0;j<m;j++)
 		{
-			if(i<j && A[i][j]!=0) temp=false;
+			if(i>j && A[i][j]!=0) temp=false;
 		}
 	}
-	if(temp) cout<<" lower diagonal";
+	if(temp) cout<<" upper diagonal";
 	temp=true;
 	cout<<endl;
 }
