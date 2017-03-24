@@ -137,3 +137,35 @@ void DelMatr(double **A, int lineA)
      delete [] A;
 }
 
+int rank(double ** matrix, int i, int j)
+{
+    int r = 0;
+    int q = 1;
+    int min = i;
+    
+    if(j < min) 
+    	min = j;
+ 
+    while (q <= min) 
+    { 
+        double **B = newmatrix(q,q); 
+ 
+        for (int a = 0; a < (i-(q-1)); a++) 
+        {
+            for (int b = 0; b < (j-(q-1)); b++)
+            {
+                for (int c = 0; c < q; c++)
+                    for (int d = 0; d < q; d++)
+                        B[c][d] = matrix[a+c][b+d];
+ 
+                if(!(Determinate(B,q)==0)) 
+                { 
+                    r = q; 
+                }
+            }
+        }
+        DelMatr(B,q);
+    q++; 
+    }
+    return r;
+}
