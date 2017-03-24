@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstring>
+#include <cassert>
 #include "functions.cpp"
 
 using namespace std;
@@ -41,6 +42,7 @@ int main()
     	cout<<"Enter size of matrix (n and m): ";
     	cin>>line1>>column1;
     	A = newmatrix(line1,column1);
+    	assert(A != NULL);
     	cout<<"Enter matrix: \n";
     	for (int i=0;i<line1;i++)
     		for (int j=0;j<column1;j++)
@@ -51,6 +53,7 @@ int main()
     	cout<<"Enter size of first matrix (n and m): ";
     	cin>>line1>>column1;
     	A = newmatrix(line1,column1);
+    	assert(A != NULL);
 	
     	cout<<"Enter matrix: \n";
     	for (int i=0;i<line1;i++)
@@ -60,6 +63,7 @@ int main()
     	cout<<"Enter size of second matrix (n and m): ";
     	cin>>line2>>column2;
 		B = newmatrix(line2,column2);
+		assert(B != NULL);
     	cout<<"Enter matrix: \n";
     	for (int i=0;i<line2;i++)
     		for (int j=0;j<column2;j++)
@@ -149,6 +153,7 @@ int main()
             	cin>>line1>>column1;
                 
             	A = newmatrix(line1,column1);
+            	assert(A != NULL);
     	        cout<<"Enter matrix: \n";
     	        for (int i=0;i<line1;i++)
     		        for (int j=0;j<column1;j++)
@@ -161,6 +166,7 @@ int main()
             	cin>>line1>>column1;
                 
             	A = newmatrix(line1,column1);
+            	assert(A != NULL);
 	
             	cout<<"Enter matrix: \n";
             	for (int i=0;i<line1;i++)
@@ -171,6 +177,7 @@ int main()
             	cin>>line2>>column2;
                 
 	        	B = newmatrix(line2,column2);
+	        	assert(B != NULL);
     	        cout<<"Enter matrix: \n";
     	        for (int i=0;i<line2;i++)
             		for (int j=0;j<column2;j++)
