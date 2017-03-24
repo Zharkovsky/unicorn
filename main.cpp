@@ -12,7 +12,7 @@ double **Trans(double **,int,int); //A=Trans(A);
 //double **Calculate(string); //A=Calculate("(A+B)*C");
 double Determinate(double **,int,int); //det=Determinate(A,An,Am);
 void show(double **a, int n,int m);
-//void TypeMatr(double **,int,int); //TypeMatr(A,An);
+void TypeMatr(double **,int,int); //TypeMatr(A,An);
 
 int main()
 {
@@ -76,7 +76,7 @@ int main()
         cout<<"3.Transposing"<<endl; //Транспонирование
         cout<<"4.to calculate determinant"<< endl; //Посчитать определитель
         cout<<"5.Sum of two matrix"<<endl; //Транспонирование
-//      cout<<"6.to define a type of a matrix"<<endl; //Определить тип матрицы
+        cout<<"6.to define a type of a matrix"<<endl; //Определить тип матрицы
 //      cout<<"7.calculation of expressions from a matrix"<< endl; //Посчитать выражения из матрицы
         cin>>count;
         switch (count)
@@ -126,8 +126,10 @@ int main()
 					DelMatr(C2, lineC2);
 					break;
 				}
-//          case 5:break;
-//          case 6:break;
+            case 6:{
+            	TypeMatr(A,line1,column1);
+				break;
+			}
             default: 
 				cout<<"False"<<endl;
 				return 0;

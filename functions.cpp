@@ -169,3 +169,59 @@ int rank(double ** matrix, int i, int j)
     }
     return r;
 }
+
+void TypeMatr(double **A,int n,int m)
+{
+	cout<<"Type of matrix:";
+	if(n==m) cout<<" square";
+	bool temp=true;
+	for(int i=0;i<n;i++)
+	{
+		for(int j=0;j<m;j++)
+		{
+			if(A[i][j]!=0) temp=false;
+		}
+	}
+	if(temp) cout<<" zero";
+	temp=true;
+	if(m==1) cout<<" vector-column";
+	if(n==1) cout<<" vector-line";
+	for(int i=0;i<n;i++)
+	{
+		for(int j=0;j<m;j++)
+		{
+			if(i!=j && A[i][j]!=0) temp=false;
+		}
+	}
+	if(temp) cout<<" diagonal";
+	temp=true;
+	for(int i=0;i<n;i++)
+	{
+		for(int j=0;j<m;j++)
+		{
+			if(i!=j && A[i][j]!=0) temp=false;
+			if(i==j && A[i][j]!=1) temp=false;
+		}
+	}
+	if(temp) cout<<" identity";
+	temp=true;
+	for(int i=0;i<n;i++)
+	{
+		for(int j=0;j<m;j++)
+		{
+			if(i>j && A[i][j]!=0) temp=false;
+		}
+	}
+	if(temp) cout<<" upper diagonal";
+	temp=true;
+	for(int i=0;i<n;i++)
+	{
+		for(int j=0;j<m;j++)
+		{
+			if(i<j && A[i][j]!=0) temp=false;
+		}
+	}
+	if(temp) cout<<" lower diagonal";
+	temp=true;
+	cout<<endl;
+}
