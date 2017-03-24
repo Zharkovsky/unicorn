@@ -78,6 +78,7 @@ int main()
         cout<<"5.Sum of two matrix"<<endl; //Транспонирование
 //      cout<<"6.to define a type of a matrix"<<endl; //Определить тип матрицы
 //      cout<<"7.calculation of expressions from a matrix"<< endl; //Посчитать выражения из матрицы
+        cout<<"8.Invertible matrix"<<endl; //посчитать обратную матрицу
         cin>>count;
         switch (count)
         {
@@ -115,8 +116,14 @@ int main()
 				break;
 			}
             case 4:
-				cout<<"Determinant of matrix = "<<Determinate(A,line1)<<endl;
-				break;
+	  {
+		//проверка для какой матрицы ищем A или B(тут для A)
+	          if(line1!=column1) cout<<"False, size very baaad(not square)"<<endl;
+                    else
+		cout<<"Determinant of matrix = "<<Determinate(A,line1)<<endl;
+	          break;
+	  }
+	  
 			case 5:
 				{
 					int lineC2 = column1,columnC2 = line1;
@@ -128,6 +135,8 @@ int main()
 				}
 //          case 5:break;
 //          case 6:break;
+
+//          case 8:определить для какой матрицы 1 или 2 искать, определить квадратная она или нет, выполнить ф-ю obrmatrix
             default: 
 				cout<<"False"<<endl;
 				return 0;
