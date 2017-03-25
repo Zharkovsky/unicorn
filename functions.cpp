@@ -177,5 +177,91 @@ void obrmatrix(float **A,int n)
     show(matrix,n,2*n)
     DelMatr(matrix,n)
     return;
+int rank(double ** matrix, int i, int j)
+{
+    int r = 0;
+    int q = 1;
+    int min = i;
+    
+    if(j < min) 
+    	min = j;
+ 
+    while (q <= min) 
+    { 
+        double **B = newmatrix(q,q); 
+ 
+        for (int a = 0; a < (i-(q-1)); a++) 
+        {
+            for (int b = 0; b < (j-(q-1)); b++)
+            {
+                for (int c = 0; c < q; c++)
+                    for (int d = 0; d < q; d++)
+                        B[c][d] = matrix[a+c][b+d];
+ 
+                if(!(Determinate(B,q)==0)) 
+                { 
+                    r = q; 
+                }
+            }
+        }
+        DelMatr(B,q);
+    q++; 
+    }
+    return r;
 }
 
+void TypeMatr(double **A,int n,int m)
+{
+	cout<<"Type of matrix:";
+	if(n==m) cout<<" square";
+	bool temp=true;
+	for(int i=0;i<n;i++)
+	{
+		for(int j=0;j<m;j++)
+		{
+			if(A[i][j]!=0) temp=false;
+		}
+	}
+	if(temp) cout<<" zero";
+	temp=true;
+	if(m==1) cout<<" vector-column";
+	if(n==1) cout<<" vector-line";
+	for(int i=0;i<n;i++)
+	{
+		for(int j=0;j<m;j++)
+		{
+			if(i!=j && A[i][j]!=0) temp=false;
+		}
+	}
+	if(temp) cout<<" diagonal";
+	temp=true;
+	for(int i=0;i<n;i++)
+	{
+		for(int j=0;j<m;j++)
+		{
+			if(i!=j && A[i][j]!=0) temp=false;
+			if(i==j && A[i][j]!=1) temp=false;
+		}
+	}
+	if(temp) cout<<" identity";
+	temp=true;
+	for(int i=0;i<n;i++)
+	{
+		for(int j=0;j<m;j++)
+		{
+			if(i<j && A[i][j]!=0) temp=false;
+		}
+	}
+	if(temp) cout<<" lower diagonal";
+	temp=true;
+	for(int i=0;i<n;i++)
+	{
+		for(int j=0;j<m;j++)
+		{
+			if(i>j && A[i][j]!=0) temp=false;
+		}
+	}
+	if(temp) cout<<" upper diagonal";
+	temp=true;
+	cout<<endl;
+}

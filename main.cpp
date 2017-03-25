@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstring>
+#include <cassert>
 #include "functions.cpp"
 
 using namespace std;
@@ -12,13 +13,13 @@ double **Trans(double **,int,int); //A=Trans(A);
 //double **Calculate(string); //A=Calculate("(A+B)*C");
 double Determinate(double **,int,int); //det=Determinate(A,An,Am);
 void show(double **a, int n,int m);
-//void TypeMatr(double **,int,int); //TypeMatr(A,An);
+void TypeMatr(double **,int,int); //TypeMatr(A,An);
 
 int main()
 {
 //	srand(time(0));
 	int line1, line2, column1, column2;
-	double number;   					// ЛњГ‹Г’ГЋГ“ вЂ°ГЋЛ‡ Г›ГЏГЊГ“ГЉГ‚ГЊГ‹Л‡ 
+	double number;   					// Г‹Е“ГѓвЂ№ГѓвЂ™ГѓЕЅГѓвЂњ Гўв‚¬В°ГѓЕЅГ‹вЂЎ ГѓвЂєГѓВЏГѓЕ’ГѓвЂњГѓЕ ГѓвЂљГѓЕ’ГѓвЂ№Г‹вЂЎ 
 	int count = 0;
 	
 	double ** A ; 
@@ -41,6 +42,7 @@ int main()
     	cout<<"Enter size of matrix (n and m): ";
     	cin>>line1>>column1;
     	A = newmatrix(line1,column1);
+    	assert(A != NULL);
     	cout<<"Enter matrix: \n";
     	for (int i=0;i<line1;i++)
     		for (int j=0;j<column1;j++)
@@ -51,6 +53,7 @@ int main()
     	cout<<"Enter size of first matrix (n and m): ";
     	cin>>line1>>column1;
     	A = newmatrix(line1,column1);
+    	assert(A != NULL);
 	
     	cout<<"Enter matrix: \n";
     	for (int i=0;i<line1;i++)
@@ -60,6 +63,7 @@ int main()
     	cout<<"Enter size of second matrix (n and m): ";
     	cin>>line2>>column2;
 		B = newmatrix(line2,column2);
+		assert(B != NULL);
     	cout<<"Enter matrix: \n";
     	for (int i=0;i<line2;i++)
     		for (int j=0;j<column2;j++)
@@ -70,15 +74,15 @@ int main()
     while(1)
     {
         cout<<"Choose the command:"<<endl;
-        cout<<"0.Exit"<<endl; //Выход
-        cout<<"1.Multiplication of a matrix by number"<<endl; //Умножение матриц на число
-        cout<<"2.Multiplication of matrixes"<<endl; //Умножение матриц
-        cout<<"3.Transposing"<<endl; //Транспонирование
-        cout<<"4.to calculate determinant"<< endl; //Посчитать определитель
-        cout<<"5.Sum of two matrix"<<endl; //Транспонирование
-//      cout<<"6.to define a type of a matrix"<<endl; //Определить тип матрицы
-//      cout<<"7.calculation of expressions from a matrix"<< endl; //Посчитать выражения из матрицы
-        cout<<"8.Invertible matrix"<<endl; //посчитать обратную матрицу
+        cout<<"0.Exit"<<endl; //Г‚Г»ГµГ®Г¤
+        cout<<"1.Multiplication of a matrix by number"<<endl; //Г“Г¬Г­Г®Г¦ГҐГ­ГЁГҐ Г¬Г ГІГ°ГЁГ¶ Г­Г  Г·ГЁГ±Г«Г®
+        cout<<"2.Multiplication of matrixes"<<endl; //Г“Г¬Г­Г®Г¦ГҐГ­ГЁГҐ Г¬Г ГІГ°ГЁГ¶
+        cout<<"3.Transposing"<<endl; //Г’Г°Г Г­Г±ГЇГ®Г­ГЁГ°Г®ГўГ Г­ГЁГҐ
+        cout<<"4.to calculate determinant"<< endl; //ГЏГ®Г±Г·ГЁГІГ ГІГј Г®ГЇГ°ГҐГ¤ГҐГ«ГЁГІГҐГ«Гј
+        cout<<"5.Sum of two matrix"<<endl; //Г’Г°Г Г­Г±ГЇГ®Г­ГЁГ°Г®ГўГ Г­ГЁГҐ
+        cout<<"6.to define a type of a matrix"<<endl; //ГЋГЇГ°ГҐГ¤ГҐГ«ГЁГІГј ГІГЁГЇ Г¬Г ГІГ°ГЁГ¶Г»
+//      cout<<"7.calculation of expressions from a matrix"<< endl; //ГЏГ®Г±Г·ГЁГІГ ГІГј ГўГ»Г°Г Г¦ГҐГ­ГЁГї ГЁГ§ Г¬Г ГІГ°ГЁГ¶Г»
+        cout<<"8.Invertible matrix"<<endl; //ГЇГ®Г±Г·ГЁГІГ ГІГј Г®ГЎГ°Г ГІГ­ГіГѕ Г¬Г ГІГ°ГЁГ¶Гі
         cin>>count;
         switch (count)
         {
@@ -117,7 +121,7 @@ int main()
 			}
             case 4:
 	  {
-		//проверка для какой матрицы ищем A или B(тут для A)
+		//ГЇГ°Г®ГўГҐГ°ГЄГ  Г¤Г«Гї ГЄГ ГЄГ®Г© Г¬Г ГІГ°ГЁГ¶Г» ГЁГ№ГҐГ¬ A ГЁГ«ГЁ B(ГІГіГІ Г¤Г«Гї A)
 	          if(line1!=column1) cout<<"False, size very baaad(not square)"<<endl;
                     else
 		cout<<"Determinant of matrix = "<<Determinate(A,line1)<<endl;
@@ -133,11 +137,25 @@ int main()
 					DelMatr(C2, lineC2);
 					break;
 				}
-//          case 5:break;
-//          case 6:break;
 
-//          case 8:определить для какой матрицы 1 или 2 искать, определить квадратная она или нет, выполнить ф-ю obrmatrix
-            default: 
+
+
+
+
+
+
+
+
+
+
+
+
+//          case 5:break;
+        case 6:{
+//          case 8:Г®ГЇГ°ГҐГ¤ГҐГ«ГЁГІГј Г¤Г«Гї ГЄГ ГЄГ®Г© Г¬Г ГІГ°ГЁГ¶Г» 1 ГЁГ«ГЁ 2 ГЁГ±ГЄГ ГІГј, Г®ГЇГ°ГҐГ¤ГҐГ«ГЁГІГј ГЄГўГ Г¤Г°Г ГІГ­Г Гї Г®Г­Г  ГЁГ«ГЁ Г­ГҐГІ, ГўГ»ГЇГ®Г«Г­ГЁГІГј Гґ-Гѕ obr            case 6:{
+            	TypeMatr(A,line1,column1);
+				break;}		
+          default: 
 				cout<<"False"<<endl;
 				return 0;
         }
@@ -156,6 +174,7 @@ int main()
             	cin>>line1>>column1;
                 
             	A = newmatrix(line1,column1);
+            	assert(A != NULL);
     	        cout<<"Enter matrix: \n";
     	        for (int i=0;i<line1;i++)
     		        for (int j=0;j<column1;j++)
@@ -168,6 +187,7 @@ int main()
             	cin>>line1>>column1;
                 
             	A = newmatrix(line1,column1);
+            	assert(A != NULL);
 	
             	cout<<"Enter matrix: \n";
             	for (int i=0;i<line1;i++)
@@ -178,6 +198,7 @@ int main()
             	cin>>line2>>column2;
                 
 	        	B = newmatrix(line2,column2);
+	        	assert(B != NULL);
     	        cout<<"Enter matrix: \n";
     	        for (int i=0;i<line2;i++)
             		for (int j=0;j<column2;j++)
