@@ -27,7 +27,7 @@ void show(double **a, int n,int m)
     for(int i=0;i<n;i++)
     {
         for(int j=0;j<m;j++)
-            cout<<setw(3)<<a[i][j];
+            cout<<setw(15)<<a[i][j];
         cout<<endl;
     }
 }
@@ -137,6 +137,46 @@ void DelMatr(double **A, int lineA)
      delete [] A;
 }
 
+void obrmatrix(float **A,int n) 
+{
+  
+    float **matrix=new float*[n];
+    for(int i=0;i<n;i++)
+     matrix[i]=new float [2*n];
+    for(int i=0;i<n;i++)
+     for(int j=0;j<n;j++)
+      matrix[i][j]=A[i][j];
+    
+    float ratio,x;
+    int i, j, k;
+    for(i = 0; i < n; i++){
+        for(j = n; j < 2*n; j++){
+            if(i==(j-n))
+                matrix[i][j] = 1.0;
+            else
+                matrix[i][j] = 0.0;
+        }
+    }
+    for(i = 0; i < n; i++){
+        for(j = 0; j < n; j++){
+            if(i!=j){
+                ratio = matrix[j][i]/matrix[i][i];
+                for(k = 0; k < 2*n; k++){
+                    matrix[j][k] -= ratio * matrix[i][k];
+                }
+            }
+        }
+    }
+    for(i = 0; i < n; i++){
+        x = matrix[i][i];
+        for(j = 0; j < 2*n; j++){
+            matrix[i][j] /= x;
+        }
+    }
+    printf("The inverse matrix is: \n");
+    show(matrix,n,2*n)
+    DelMatr(matrix,n)
+    return;
 int rank(double ** matrix, int i, int j)
 {
     int r = 0;

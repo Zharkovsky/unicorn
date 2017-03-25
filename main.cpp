@@ -19,7 +19,7 @@ int main()
 {
 //	srand(time(0));
 	int line1, line2, column1, column2;
-	double number;   					// ˜ËÒÎÓ ‰Îˇ ÛÏÌÓÊÂÌËˇ 
+	double number;   					// ËœÃ‹Ã’ÃŽÃ“ â€°ÃŽË‡ Ã›ÃÃŒÃ“ÃŠÃ‚ÃŒÃ‹Ë‡ 
 	int count = 0;
 	
 	double ** A ; 
@@ -74,14 +74,15 @@ int main()
     while(1)
     {
         cout<<"Choose the command:"<<endl;
-        cout<<"0.Exit"<<endl; //�����
-        cout<<"1.Multiplication of a matrix by number"<<endl; //��������� ������ �� �����
-        cout<<"2.Multiplication of matrixes"<<endl; //��������� ������
-        cout<<"3.Transposing"<<endl; //����������������
-        cout<<"4.to calculate determinant"<< endl; //��������� ������������
-        cout<<"5.Sum of two matrix"<<endl; //����������������
-        cout<<"6.to define a type of a matrix"<<endl; //���������� ��� �������
-//      cout<<"7.calculation of expressions from a matrix"<< endl; //��������� ��������� �� �������
+        cout<<"0.Exit"<<endl; //Âûõîä
+        cout<<"1.Multiplication of a matrix by number"<<endl; //Óìíîæåíèå ìàòðèö íà ÷èñëî
+        cout<<"2.Multiplication of matrixes"<<endl; //Óìíîæåíèå ìàòðèö
+        cout<<"3.Transposing"<<endl; //Òðàíñïîíèðîâàíèå
+        cout<<"4.to calculate determinant"<< endl; //Ïîñ÷èòàòü îïðåäåëèòåëü
+        cout<<"5.Sum of two matrix"<<endl; //Òðàíñïîíèðîâàíèå
+        cout<<"6.to define a type of a matrix"<<endl; //Îïðåäåëèòü òèï ìàòðèöû
+//      cout<<"7.calculation of expressions from a matrix"<< endl; //Ïîñ÷èòàòü âûðàæåíèÿ èç ìàòðèöû
+        cout<<"8.Invertible matrix"<<endl; //ïîñ÷èòàòü îáðàòíóþ ìàòðèöó
         cin>>count;
         switch (count)
         {
@@ -119,8 +120,14 @@ int main()
 				break;
 			}
             case 4:
-				cout<<"Determinant of matrix = "<<Determinate(A,line1)<<endl;
-				break;
+	  {
+		//ïðîâåðêà äëÿ êàêîé ìàòðèöû èùåì A èëè B(òóò äëÿ A)
+	          if(line1!=column1) cout<<"False, size very baaad(not square)"<<endl;
+                    else
+		cout<<"Determinant of matrix = "<<Determinate(A,line1)<<endl;
+	          break;
+	  }
+	  
 			case 5:
 				{
 					int lineC2 = column1,columnC2 = line1;
@@ -130,11 +137,25 @@ int main()
 					DelMatr(C2, lineC2);
 					break;
 				}
-            case 6:{
+
+
+
+
+
+
+
+
+
+
+
+
+
+//          case 5:break;
+        case 6:{
+//          case 8:îïðåäåëèòü äëÿ êàêîé ìàòðèöû 1 èëè 2 èñêàòü, îïðåäåëèòü êâàäðàòíàÿ îíà èëè íåò, âûïîëíèòü ô-þ obr            case 6:{
             	TypeMatr(A,line1,column1);
-				break;
-			}
-            default: 
+				break;}		
+          default: 
 				cout<<"False"<<endl;
 				return 0;
         }
