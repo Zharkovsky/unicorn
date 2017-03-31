@@ -80,74 +80,74 @@ int main()
             case 0: 
             {
 				return 0;
-			}
+	    }
             case 1:
             {
             	cout << "Enter the digit: ";
             	cin >> number;
             	int lineC1 = line1,columnC1 = column1;
             	double **C1 = newmatrix(lineC1,columnC1);
-				C1 = MulNum(A,line1,column1,number);
-				show(C1,lineC1,columnC1);
-				DelMatr(C1, lineC1);
-				break;
-			}
+		C1 = MulNum(A,line1,column1,number);
+		show(C1,lineC1,columnC1);
+		DelMatr(C1, lineC1);
+		break;
+	    }
             case 2:
             {
-				int lineC = line1,columnC = column2;
+		int lineC = line1,columnC = column2;
             	double **C = newmatrix(lineC,columnC);
-				C = Multiplication(A,B,line1,column1,line2,column2);
-				show(C,lineC,columnC);
-				DelMatr(C, lineC);
-				break;
-			}
+		C = Multiplication(A,B,line1,column1,line2,column2);
+		show(C,lineC,columnC);
+		DelMatr(C, lineC);
+		break;
+	    }
             case 3:
             {
             	int lineC2 = column1,columnC2 = line1;
             	double **C2 = newmatrix(lineC2,columnC2);
-				C2 = Trans(A,line1,column1);
-				show(C2,lineC2,columnC2);
-				DelMatr(C2, lineC2);
-				break;
-			}
+		C2 = Trans(A,line1,column1);
+		show(C2,lineC2,columnC2);
+		DelMatr(C2, lineC2);
+		break;
+	    }
             case 4:
-	  		{
-	  		  //works for 'A' matrix
-	            if(line1 != column1)
-			   	   	cout << "False, size very baaad(not square)" << endl;
+	    {
+	  	//works for 'A' matrix
+	        if(line1 != column1)
+	   	cout << "False, size very baaad(not square)" << endl;
               	else
-					cout << "Determinant of matrix = " << Determinate(A,line1) << endl;
-	    		break;
-	        }	  
-	  		case 5:
-	 		{
-	            int lineC2 = column1,columnC2 = line1;
+			cout << "Determinant of matrix = " << Determinate(A,line1) << endl;
+	    	break;
+	    }	  
+	    case 5:
+	    {
+	        int lineC2 = column1,columnC2 = line1;
             	double **C2 = newmatrix(lineC2,columnC2);
-				C2 = Sum(A,B,line1,column1,line2,column2);
-				show(C2,lineC2,columnC2);
-				DelMatr(C2, lineC2);
-				break;
-			}
+		C2 = Sum(A,B,line1,column1,line2,column2);
+		show(C2,lineC2,columnC2);
+		DelMatr(C2, lineC2);
+		break;
+            }
             case 6:
             {
             	TypeMatr(A,line1,column1);
 				break;
             }
             case 7:
-				break;
+		break;
             case 8:
             {
-           		//works for 'A' matrix
-          		if(line1 != column1) 
-				   cout << "False, size very baaad(not square)" << endl;
-          		else
-          		   obrmatrix(A,line1);
+           	//works for 'A' matrix
+          	if(line1 != column1) 
+		    cout << "False, size very baaad(not square)" << endl;
+          	else
+          	    obrmatrix(A,line1);
               	break;	
             }         		
             default: 
             {
             	cout << "False" << endl;
-				return 0;
+		return 0;
             }				
         }
         
@@ -158,7 +158,7 @@ int main()
         if(c != 'y')
         {
         	
-        	cout << "Enter amount of matrix (1 or 2): ";
+            cout << "Enter amount of matrix (1 or 2): ";
             cin >> k;
             if (k == 1)
             {
@@ -186,18 +186,18 @@ int main()
             	for (int i = 0; i < line1; i++)
     		        for (int j = 0; j < column1; j++)
     		        	cin >> A[i][j];
-    			DelMatr(B,line2);
+    		DelMatr(B,line2);
             	cout << "Enter size of second matrix (n and m): ";
             	cin >> line2 >> column2;
                 
-	        	B = newmatrix(line2,column2);
-	        	assert(B != NULL);
+	        B = newmatrix(line2,column2);
+	        assert(B != NULL);
     	        cout<<"Enter matrix: \n";
     	        for (int i = 0; i < line2; i++)
             		for (int j = 0; j < column2; j++)
     	        		cin >> B[i][j];    	
             }
-		}
+	}
     }
     
     DelMatr(A,line1);
