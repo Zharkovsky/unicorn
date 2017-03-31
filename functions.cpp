@@ -105,18 +105,6 @@ double ** Multiplication(double **A, double **B, int lineA, int columnA, int lin
 {
 	double **result = newmatrix(lineA, columnB);
 		
-	if (columnA != lineB)
-		{
-			cout << "Dimension error. Try again." << endl;
-			double **C = new double*[lineA];
-			for(int i = 0; i < lineA; i++)
-        		C[i] = new double[columnA];
-        	for(int i = 0; i < lineA; i++)
-        		for(int j = 0; j < columnA; j++)
-            		C[i][j] = 0.0;
-    		return C;
-		}
-		
 	for (int i = 0; i < lineA; i++)
 		for (int j = 0; j < columnB; j++)
 			for (int k =0; k < lineB; k++)
