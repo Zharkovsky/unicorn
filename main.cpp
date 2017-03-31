@@ -14,7 +14,8 @@ double **Trans(double **,int,int); //A=Trans(A);
 double Determinate(double **,int,int); //det=Determinate(A,An,Am);
 void show(double **a, int n,int m);
 void TypeMatr(double **,int,int); //TypeMatr(A,An);
-void obrmatrix(float **A,int n) 
+void obrmatrix(float **A,int n); 
+int rank(double **, int, int); 
 
 int main()
 {
@@ -84,6 +85,7 @@ int main()
         cout<<"6.to define a type of a matrix"<<endl; //Îïðåäåëèòü òèï ìàòðèöû
 //      cout<<"7.calculation of expressions from a matrix"<< endl; //Ïîñ÷èòàòü âûðàæåíèÿ èç ìàòðèöû
         cout<<"8.Invertible matrix"<<endl; //ïîñ÷èòàòü îáðàòíóþ ìàòðèöó
+        cout<<"9.The rank of the matrix "<<endl;
         cin>>count;
         switch (count)
         {
@@ -104,11 +106,17 @@ int main()
 			}
             case 2:
             {
-				int lineC = line1,columnC = column2;
-            	double **C = newmatrix(lineC,columnC);
-				C = Multiplication(A,B,line1,column1,line2,column2);
-				show(C,lineC,columnC);
-				DelMatr(C, lineC);
+				
+				if (column1 != line2)
+					cout << endl << " Error in dimension. Try entering other matrices." << endl; 
+				else
+				{
+					double **C;
+					int lineC = line1,columnC = column2;
+					C = Multiplication(A,B,line1,column1,line2,column2);
+					show(C,lineC,columnC);
+					DelMatr(C, lineC);
+				}
 				break;
 			}
             case 3:
@@ -153,7 +161,13 @@ int main()
           	else
           	 obrmatrix(A,line1);
                               	break;	
-                               }         		
+            }  
+			case 9:
+			{
+				cout << "Rank = " << rank(A, line1, column1) << endl;
+				break;
+			}				   
+					       		
             default: 
 				cout<<"False"<<endl;
 				return 0;
