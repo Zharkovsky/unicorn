@@ -1,211 +1,272 @@
 #include <iostream>
-#include <cstring>
-#include <cassert>
-#include "functions.cpp"
+#include <iomanip>
+#include <cmath>
+#include <ctime>
 
 using namespace std;
 
-double **newmatrix (int line, int column);
-double **Sum(double **,double **,int,int,int,int); //A=Sum(B,C,Bn,Bm,Cn,Cm);
-double **MulNum(double **,int,int,double); //A=MulNum(B,Bn,Bm,digit)
-double **Multiplication(double **,double **,int,int,int,int); //A=Mul(B,C,Bn,Bm,Cn,Cm);
-double **Trans(double **,int,int); //A=Trans(A);
-//double **Calculate(string); //A=Calculate("(A+B)*C");
-double Determinate(double **,int,int); //det=Determinate(A,An,Am);
-void   show(double **a, int n,int m);
-void   TypeMatr(double **,int,int); //TypeMatr(A,An);
-void   obrmatrix(float **A,int n); 
-
-int main()
+double **newmatrix (int line, int column)
 {
-//	srand(time(0));
-	int line1, line2, column1, column2;
-	double number;   					
-	int count = 0;
-	
-	double ** A ; 
-	double ** B ; 
-    
-    int k;
-    cout << "Enter amount of matrix (1 or 2): ";
-    cin >> k;
-    if (k == 1)
+	double **matrix = new double *[line];
+	for (int i = 0; i < line; i++)
+		matrix[i] = new double[column];
+	return matrix;
+}
+
+double **MulNum(double **A,int n,int m,double digit)
+{
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < m; j++)
+            A[i][j] *= digit;
+
+    return A;
+}
+
+void show(double **a, int n,int m)
+{
+    for(int i = 0; i < n; i++)
     {
-    	cout << "Enter size of matrix (n and m): ";
-    	cin >> line1 >> column1;
-    	A = newmatrix(line1,column1);
-    	assert(A != NULL);
-    	cout << "Enter matrix: \n";
-    	for (int i = 0; i < line1; i++)
-    		for (int j = 0; j < column1; j++)
-    			cin >> A[i][j];
+        for(int j = 0; j < m; j++)
+            cout << setw(15) << a[i][j];
+        cout << endl;
     }
-    else
-    {
-    	cout << "Enter size of first matrix (n and m): ";
-    	cin >> line1 >> column1;
-    	A = newmatrix(line1,column1);
-    	assert(A != NULL);
-	
-    	cout << "Enter matrix: \n";
-    	for (int i = 0; i < line1; i++)
-    		for (int j = 0; j < column1; j++)
-    			cin >> A[i][j];
-    			
-    	cout << "Enter size of second matrix (n and m): ";
-    	cin >> line2 >> column2;
-		B = newmatrix(line2,column2);
-		assert(B != NULL);
-    	cout << "Enter matrix: \n";
-    	for (int i = 0; i < line2; i++)
-    		for (int j = 0; j < column2; j++)
-    			cin >> B[i][j];    	
-    }
-    
-    while(1)
-    {
-        cout << "Choose the command:" << endl;
-        cout << "0.Exit" << endl; //Auoia
-        cout << "1.Multiplication of a matrix by number" << endl; //Oiii?aiea iao?eo ia ?enei
-        cout << "2.Multiplication of matrixes" << endl; //Oiii?aiea iao?eo
-        cout << "3.Transposing" << endl; //O?ainiiie?iaaiea
-        cout << "4.To calculate determinant" << endl; //Iin?eoaou ii?aaaeeoaeu
-        cout << "5.Sum of two matrix" << endl; //O?ainiiie?iaaiea
-        cout << "6.to define a type of a matrix" << endl; //Ii?aaaeeou oei iao?eou
-//      cout<<"7.calculation of expressions from a matrix"<< endl; //Iin?eoaou au?a?aiey ec iao?eou
-        cout << "8.Invertible matrix" << endl; //iin?eoaou ia?aoio? iao?eoo
-        cin >> count;
-        switch (count)
-        {
-            case 0: 
-            {
-				return 0;
-			}
-            case 1:
-            {
-            	cout << "Enter the digit: ";
-            	cin >> number;
-            	int lineC1 = line1,columnC1 = column1;
-            	double **C1 = newmatrix(lineC1,columnC1);
-				C1 = MulNum(A,line1,column1,number);
-				show(C1,lineC1,columnC1);
-				DelMatr(C1, lineC1);
-				break;
-			}
-            case 2:
-            {
-				int lineC = line1,columnC = column2;
-            	double **C = newmatrix(lineC,columnC);
-				C = Multiplication(A,B,line1,column1,line2,column2);
-				show(C,lineC,columnC);
-				DelMatr(C, lineC);
-				break;
-			}
-            case 3:
-            {
-            	int lineC2 = column1,columnC2 = line1;
-            	double **C2 = newmatrix(lineC2,columnC2);
-				C2 = Trans(A,line1,column1);
-				show(C2,lineC2,columnC2);
-				DelMatr(C2, lineC2);
-				break;
-			}
-            case 4:
-	  		{
-	  		  //works for 'A' matrix
-	            if(line1 != column1)
-			   	   	cout << "False, size very baaad(not square)" << endl;
-              	else
-					cout << "Determinant of matrix = " << Determinate(A,line1) << endl;
-	    		break;
-	        }	  
-	  		case 5:
-	 		{
-	            int lineC2 = column1,columnC2 = line1;
-            	double **C2 = newmatrix(lineC2,columnC2);
-				C2 = Sum(A,B,line1,column1,line2,column2);
-				show(C2,lineC2,columnC2);
-				DelMatr(C2, lineC2);
-				break;
-			}
-            case 6:
-            {
-            	TypeMatr(A,line1,column1);
-				break;
-            }
-            case 7:
-				break;
-            case 8:
-            {
-           		//works for 'A' matrix
-          		if(line1 != column1) 
-				   cout << "False, size very baaad(not square)" << endl;
-          		else
-          		{
-          			obrmatrix(A,line1);
-          			show(A,line1,2*line1);
-          		}
-          		   
-              	break;	
-            }         		
-            default: 
-            {
-            	cout << "False" << endl;
-				return 0;
-            }				
-        }
-        
-        cout << "Do you want to save matr? (y/n): ";
-        char c;
-        cin >> c;
-        
-        if(c != 'y')
-        {
-        	
-        	cout << "Enter amount of matrix (1 or 2): ";
-            cin >> k;
-            if (k == 1)
-            {
-                DelMatr(A,line1);
-            	cout << "Enter size of matrix (n and m): ";
-            	cin >> line1 >> column1;
-                
-            	A = newmatrix(line1,column1);
-            	assert(A != NULL);
-    	        cout << "Enter matrix: \n";
-    	        for (int i = 0; i < line1; i++)
-    		        for (int j = 0; j < column1; j++)
-    		        	cin >> A[i][j];
-            }
-            else
-            {
-                DelMatr(A,line1);
-    	        cout << "Enter size of first matrix (n and m): ";
-            	cin >> line1 >> column1;
-                
-            	A = newmatrix(line1,column1);
-            	assert(A != NULL);
-	
-            	cout << "Enter matrix: \n";
-            	for (int i = 0; i < line1; i++)
-    		        for (int j = 0; j < column1; j++)
-    		        	cin >> A[i][j];
-    			DelMatr(B,line2);
-            	cout << "Enter size of second matrix (n and m): ";
-            	cin >> line2 >> column2;
-                
-	        	B = newmatrix(line2,column2);
-	        	assert(B != NULL);
-    	        cout<<"Enter matrix: \n";
-    	        for (int i = 0; i < line2; i++)
-            		for (int j = 0; j < column2; j++)
-    	        		cin >> B[i][j];    	
-            }
+}
+
+
+double Determinate(double **a,int size)
+{
+ 	int i,j;
+ 	double det = 0;
+ 	double **matr;
+ 	if (size == 1)
+ 	{
+ 	 	det = a[0][0];
+ 	}
+ 	else 
+	 	if (size == 2)
+		{
+			det = a[0][0] * a[1][1] - a[0][1] * a[1][0];
 		}
+		else
+		{
+  			matr = new double*[size-1];
+  			for(i = 0; i < size; ++i)
+  			{
+   				for(j = 0; j < size-1; ++j)
+   				{
+    			   if (j < i)
+     			   	  matr[j] = a[j];
+    			   else
+     			      matr[j] = a[j+1];
+   				}
+   				det += pow((double)-1,(i+j)) * Determinate(matr, size-1) * a[i][size-1];
+  			}
+  			delete[] matr;
+ 		}
+		return det;
+}
+
+double **Sum(double **A,double **B,int An,int Am,int Bn,int Bm)
+{	
+    if(An != Bn || Am != Bm) 
+    {
+    	cout<<"Error. Try Again."<<endl;
+		double **C = new double*[An];
+		for(int i = 0; i < An; i++)
+        	C[i] = new double[Am];
+        for(int i = 0; i < An; i++)
+        	for(int j = 0; j < Am; j++)
+            	C[i][j] = 0.0;
+    	return C;
     }
     
-    DelMatr(A,line1);
-    DelMatr(B,line2);
+    double **C = new double *[An];
+    for(int i = 0; i < An; i++)
+        C[i] = new double[Am];
+        
+    for(int i = 0; i < An; i++)
+        for(int j = 0; j < Am; j++)
+            C[i][j] = A[i][j] + B[i][j];
+    return C;
+}
+
+double **Trans(double **A,int n,int m)
+{
+    double **B = new double*[m];
+    for(int i = 0; i < m; i++)
+        B[i] = new double[n];
+    for(int i = 0; i < n; i++)
+        for(int j = 0; j < m; j++)
+            B[j][i] = A[i][j];
+    return B;
+}
+
+double ** Multiplication(double **A, double **B, int lineA, int columnA, int lineB, int columnB)
+{
+	double **result = newmatrix(lineA, columnB);
+		
+	if (columnA != lineB)
+		{
+			cout << "Dimension error. Try again." << endl;
+			double **C = new double*[lineA];
+			for(int i = 0; i < lineA; i++)
+        		C[i] = new double[columnA];
+        	for(int i = 0; i < lineA; i++)
+        		for(int j = 0; j < columnA; j++)
+            		C[i][j] = 0.0;
+    		return C;
+		}
+		
+	for (int i = 0; i < lineA; i++)
+		for (int j = 0; j < columnB; j++)
+			for (int k =0; k < lineB; k++)
+				result[i][j] += A[i][k]*B[k][j];
+				
+	return result;
+}
+
+/*double ** Random(double **A, int lineA, int columnA)
+{
+	for (int i = 0; i < lineA ; i++)
+		for (int j = 0; j < columnA ; j++)
+			A[i][j] = rand()%20+1;
+	return A;
+}*/
+
+void DelMatr(double **A, int lineA)
+{
+     for (int i = 0; i < lineA; ++i)
+         delete[] A[i];
+     delete [] A;
+}
+
+void obrmatrix(double **A,int n) 
+{
+    double **matrix = new double*[n];
+    for(int i = 0; i < n; i++)
+       matrix[i] = new double[2*n];
+    for(int i = 0; i < n; i++)
+       for(int j = 0; j < n; j++)
+          matrix[i][j] = A[i][j];
     
-    return 0;
+    double ratio,x;
+    int i, j, k;
+    for(i = 0; i < n; i++){
+        for(j = n; j < 2*n; j++){
+            if(i == (j-n))
+                matrix[i][j] = 1.0;
+            else
+                matrix[i][j] = 0.0;
+        }
+    }
+    for(i = 0; i < n; i++){
+        for(j = 0; j < n; j++){
+            if(i != j){
+                ratio = matrix[j][i]/matrix[i][i];
+                for(k = 0; k < 2*n; k++){
+                    matrix[j][k] -= ratio * matrix[i][k];
+                }
+            }
+        }
+    }
+    for(i = 0; i < n; i++){
+        x = matrix[i][i];
+        for(j = 0; j < 2*n; j++){
+            matrix[i][j] /= x;
+        }
+    }
+  //  printf("The inverse matrix is: \n");
+    //show(matrix,n,2*n);
+    DelMatr(matrix,n);
+    return;
+}    
+    
+int rank(double ** matrix, int i, int j)
+{
+    int r = 0;
+    int q = 1;
+    int min = i;
+    
+    if(j < min) 
+    	min = j;
+ 
+    while (q <= min) 
+    { 
+        double **B = newmatrix(q,q); 
+ 
+        for (int a = 0; a < (i-(q-1)); a++) 
+        {
+            for (int b = 0; b < (j-(q-1)); b++)
+            {
+                for (int c = 0; c < q; c++)
+                    for (int d = 0; d < q; d++)
+                        B[c][d] = matrix[a+c][b+d];
+ 
+                if(!(Determinate(B,q) == 0)) 
+                { 
+                    r = q; 
+                }
+            }
+        }
+        DelMatr(B,q);
+    	q++; 
+    }
+    return r;
+}
+
+void TypeMatr(double **A,int n,int m)
+{
+	cout << "Type of matrix:";
+	if(n == m) cout << " square";
+	bool temp = true;
+	for(int i = 0; i < n; i++)
+	{
+		for(int j = 0; j < m; j++)
+		{
+			if (A[i][j] != 0) temp = false;
+		}
+	}
+	if (temp) cout << " zero";
+	temp = true;
+	if (m == 1) cout << " vector-column";
+	if (n == 1) cout << " vector-line";
+	for(int i = 0; i < n; i++)
+	{
+		for(int j = 0; j < m; j++)
+		{
+			if (i != j && A[i][j] != 0) temp = false;
+		}
+	}
+	
+	if (temp) cout << " diagonal";
+	temp = true;
+	for(int i = 0;i < n; i++)
+	{
+		for(int j = 0; j < m; j++)
+		{
+			if(i != j && A[i][j] != 0) temp = false;
+			if(i == j && A[i][j] != 1) temp = false;
+		}
+	}
+	if(temp) cout << " identity";
+	temp = true;
+	for(int i = 0; i < n; i++)
+	{
+		for(int j = 0; j < m; j++)
+		{
+			if(i < j && A[i][j] != 0) temp = false;
+		}
+	}
+	if(temp) cout << " lower diagonal";
+	temp = true;
+	for(int i = 0; i < n; i++)
+	{
+		for(int j = 0; j < m; j++)
+		{
+			if(i > j && A[i][j] != 0) temp = false;
+		}
+	}
+	if(temp) cout << " upper diagonal";
+	temp = true;
+	cout << endl;
 }
