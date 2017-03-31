@@ -139,7 +139,6 @@ void DelMatr(double **A, int lineA)
 
 void obrmatrix(float **A,int n) 
 {
-  
     float **matrix=new float*[n];
     for(int i=0;i<n;i++)
      matrix[i]=new float [2*n];
@@ -177,6 +176,11 @@ void obrmatrix(float **A,int n)
     show(matrix,n,2*n)
     DelMatr(matrix,n)
     return;
+}
+    
+    
+    
+    
 int rank(double ** matrix, int i, int j)
 {
     int r = 0;
