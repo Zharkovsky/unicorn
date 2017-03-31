@@ -14,6 +14,7 @@ double **Trans(double **,int,int); //A=Trans(A);
 double Determinate(double **,int,int); //det=Determinate(A,An,Am);
 void show(double **a, int n,int m);
 void TypeMatr(double **,int,int); //TypeMatr(A,An);
+void obrmatrix(float **A,int n) 
 
 int main()
 {
@@ -78,7 +79,7 @@ int main()
         cout<<"1.Multiplication of a matrix by number"<<endl; //Óìíîæåíèå ìàòðèö íà ÷èñëî
         cout<<"2.Multiplication of matrixes"<<endl; //Óìíîæåíèå ìàòðèö
         cout<<"3.Transposing"<<endl; //Òðàíñïîíèðîâàíèå
-        cout<<"4.to calculate determinant"<< endl; //Ïîñ÷èòàòü îïðåäåëèòåëü
+        cout<<"4.To calculate determinant"<< endl; //Ïîñ÷èòàòü îïðåäåëèòåëü
         cout<<"5.Sum of two matrix"<<endl; //Òðàíñïîíèðîâàíèå
         cout<<"6.to define a type of a matrix"<<endl; //Îïðåäåëèòü òèï ìàòðèöû
 //      cout<<"7.calculation of expressions from a matrix"<< endl; //Ïîñ÷èòàòü âûðàæåíèÿ èç ìàòðèöû
@@ -121,41 +122,39 @@ int main()
 			}
             case 4:
 	  {
-		//ïðîâåðêà äëÿ êàêîé ìàòðèöû èùåì A èëè B(òóò äëÿ A)
+	  	//works for 'A' matrix
 	          if(line1!=column1) cout<<"False, size very baaad(not square)"<<endl;
                     else
 		cout<<"Determinant of matrix = "<<Determinate(A,line1)<<endl;
-	          break;
-	  }
+	                              break;
+	                    }
 	  
-			case 5:
-				{
-					int lineC2 = column1,columnC2 = line1;
-            		double **C2 = newmatrix(lineC2,columnC2);
-					C2 = Sum(A,B,line1,column1,line2,column2);
-					show(C2,lineC2,columnC2);
-					DelMatr(C2, lineC2);
-					break;
-				}
+	  case 5:
+	  {
+	          int lineC2 = column1,columnC2 = line1;
+            	double **C2 = newmatrix(lineC2,columnC2);
+		C2 = Sum(A,B,line1,column1,line2,column2);
+		show(C2,lineC2,columnC2);
+		DelMatr(C2, lineC2);
+				break;
+			}
 
 
-
-
-
-
-
-
-
-
-
-
-
-//          case 5:break;
-        case 6:{
-//          case 8:îïðåäåëèòü äëÿ êàêîé ìàòðèöû 1 èëè 2 èñêàòü, îïðåäåëèòü êâàäðàòíàÿ îíà èëè íåò, âûïîëíèòü ô-þ obr            case 6:{
+            case 6:
+            {
             	TypeMatr(A,line1,column1);
-				break;}		
-          default: 
+				break;
+                               }
+            case 7:break;
+            case 8:
+            {
+           	//works for 'A' matrix
+          	if(line1!=column1) cout<<"False, size very baaad(not square)"<<endl;
+          	else
+          	 obrmatrix(A,line1);
+                              	break;	
+                               }         		
+            default: 
 				cout<<"False"<<endl;
 				return 0;
         }
