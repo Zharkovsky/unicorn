@@ -112,7 +112,7 @@ int main()
             case 1:
             {
             	cout<<"Enter the digit: ";
-            	cin>>s; stoi(s,number);
+            	cin>>s; stod(s,number);
             	int lineC1 = line1,columnC1 = column1;
             	double **C1 = newmatrix(lineC1,columnC1);
 				C1 = MulNum(A,line1,column1,number);
@@ -247,10 +247,8 @@ int main()
     	
             }
 		}
-    }
-    
+    } 
     DelMatr(A,line1);
-    DelMatr(B,line2);
-    
+    DelMatr(B,line2);  
     return 0;
 }
