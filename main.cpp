@@ -247,10 +247,8 @@ int main()
     	
             }
 		}
-    }
-    
+    } 
     DelMatr(A,line1);
-    DelMatr(B,line2);
-    
+    DelMatr(B,line2);  
     return 0;
 }

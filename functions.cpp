@@ -270,7 +270,7 @@ void stoi(string s,int &k)
 		else flag=0;
 	}
 	if(!flag){
-		cout<<"Incorrect input (1 int), try again: ";
+		cout<<"Incorrect input (int), try again: ";
 		cin>>s;
 		stoi(s,k);
 	}
@@ -302,7 +302,7 @@ void stod(string s,double &k)
 		k/=ten;
 	}
 	if(!flag){
-		cout<<"Incorrect input (1 double), try again: ";
+		cout<<"Incorrect input (double), try again: ";
 		cin>>s;
 		stod(s,k);
 	}
