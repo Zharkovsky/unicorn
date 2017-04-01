@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstring>
+#include <string>
 #include <cassert>
 #include "functions.cpp"
 
@@ -20,7 +21,7 @@ int rank(double **, int, int);
 int main()
 {
 //	srand(time(0));
-	int line1, line2, column1, column2;
+	int line1=0, line2=0, column1=0, column2=0;
 	double number;   					// ËœÃ‹Ã’ÃŽÃ“ â€°ÃŽË‡ Ã›ÃÃŒÃ“ÃŠÃ‚ÃŒÃ‹Ë‡ 
 	int count = 0;
 	
@@ -35,46 +36,61 @@ int main()
 	for (int i = 0; i < line2 ; i++)
 		B[i] = new double [column2];
 */
-    
-    int k;
+    string s; //for input
+    int k=1;
     cout<<"Enter amount of matrix (1 or 2): ";
-    cin>>k;
+    cin>>s;
+    stoi(s,k);
     if (k == 1)
     {
     	cout<<"Enter size of matrix (n and m): ";
-    	cin>>line1>>column1;
+    	cin>>s; stoi(s,line1);
+    	cin>>s; stoi(s,column1);
     	A = newmatrix(line1,column1);
     	assert(A != NULL);
     	cout<<"Enter matrix: \n";
     	for (int i=0;i<line1;i++)
     		for (int j=0;j<column1;j++)
-    			cin>>A[i][j];
+    		{
+    			cin>>s;
+    			stod(s,A[i][j]);
+    		}
     }
     else
     {
+    	if(k>2) cout<<"Max number of matrix = 2. Let's work with 2 matrix!"<<endl;
     	cout<<"Enter size of first matrix (n and m): ";
-    	cin>>line1>>column1;
+    	cin>>s; stoi(s,line1);
+    	cin>>s; stoi(s,column1);
     	A = newmatrix(line1,column1);
     	assert(A != NULL);
 	
     	cout<<"Enter matrix: \n";
     	for (int i=0;i<line1;i++)
     		for (int j=0;j<column1;j++)
-    			cin>>A[i][j];
+    		{
+    			cin>>s;
+    			stod(s,A[i][j]);
+    		}
     			
     	cout<<"Enter size of second matrix (n and m): ";
-    	cin>>line2>>column2;
+    	cin>>s; stoi(s,line2);
+    	cin>>s; stoi(s,column2);
 		B = newmatrix(line2,column2);
 		assert(B != NULL);
     	cout<<"Enter matrix: \n";
     	for (int i=0;i<line2;i++)
     		for (int j=0;j<column2;j++)
-    			cin>>B[i][j];
+    		{
+    			cin>>s;
+    			stod(s,B[i][j]);
+    		}
     	
     }
     
     while(1)
     {
+        //assert(check_matr(A,line1,column1,B,line2,column2));
         cout<<"Choose the command:"<<endl;
         cout<<"0.Exit"<<endl; //Âûõîä
         cout<<"1.Multiplication of a matrix by number"<<endl; //Óìíîæåíèå ìàòðèö íà ÷èñëî
@@ -86,7 +102,7 @@ int main()
 //      cout<<"7.calculation of expressions from a matrix"<< endl; //Ïîñ÷èòàòü âûðàæåíèÿ èç ìàòðèöû
         cout<<"8.Invertible matrix"<<endl; //ïîñ÷èòàòü îáðàòíóþ ìàòðèöó
         cout<<"9.The rank of the matrix "<<endl;
-        cin>>count;
+        cin>>s; stoi(s,count);
         switch (count)
         {
             case 0: 
@@ -96,7 +112,7 @@ int main()
             case 1:
             {
             	cout<<"Enter the digit: ";
-            	cin>>number;
+            	cin>>s; stod(s,number);
             	int lineC1 = line1,columnC1 = column1;
             	double **C1 = newmatrix(lineC1,columnC1);
 				C1 = MulNum(A,line1,column1,number);
@@ -184,20 +200,25 @@ int main()
             {
                 DelMatr(A,line1);
             	cout<<"Enter size of matrix (n and m): ";
-            	cin>>line1>>column1;
+            	cin>>s; stoi(s,line1);
+    	        cin>>s; stoi(s,column1);
                 
             	A = newmatrix(line1,column1);
             	assert(A != NULL);
     	        cout<<"Enter matrix: \n";
     	        for (int i=0;i<line1;i++)
     		        for (int j=0;j<column1;j++)
-    		        	cin>>A[i][j];
+    		        {
+    			        cin>>s;
+    			        stod(s,A[i][j]);
+    		        }
             }
             else
             {
                 DelMatr(A,line1);
     	        cout<<"Enter size of first matrix (n and m): ";
-            	cin>>line1>>column1;
+            	cin>>s; stoi(s,line1);
+    	        cin>>s; stoi(s,column1);
                 
             	A = newmatrix(line1,column1);
             	assert(A != NULL);
@@ -205,17 +226,24 @@ int main()
             	cout<<"Enter matrix: \n";
             	for (int i=0;i<line1;i++)
     		        for (int j=0;j<column1;j++)
-    		        	cin>>A[i][j];
+    		        {
+    			        cin>>s;
+    			        stod(s,A[i][j]);
+    		        }
     			DelMatr(B,line2);
             	cout<<"Enter size of second matrix (n and m): ";
-            	cin>>line2>>column2;
+            	cin>>s; stoi(s,line2);
+    	        cin>>s; stoi(s,column2);
                 
 	        	B = newmatrix(line2,column2);
 	        	assert(B != NULL);
     	        cout<<"Enter matrix: \n";
     	        for (int i=0;i<line2;i++)
             		for (int j=0;j<column2;j++)
-    	        		cin>>B[i][j];
+    	        	{
+    			        cin>>s;
+    			        stod(s,B[i][j]);
+    		        }
     	
             }
 		}

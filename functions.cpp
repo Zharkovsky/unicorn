@@ -2,6 +2,7 @@
 #include <iomanip>
 #include <cmath>
 #include <ctime>
+#include <string>
 
 using namespace std;
 
@@ -257,4 +258,52 @@ void TypeMatr(double **A,int n,int m)
 	if(temp) cout << " upper diagonal";
 	temp = true;
 	cout << endl;
+}
+
+void stoi(string s,int &k)
+{
+	k=0;
+	bool flag=1;
+	for(int i=s.size()-1;i>=0 && flag;i--)
+	{
+		if(s[i]>='0' && s[i]<='9') k=k*10+(s[i]-'0');
+		else flag=0;
+	}
+	if(!flag){
+		cout<<"Incorrect input (1 int), try again: ";
+		cin>>s;
+		stoi(s,k);
+	}
+}
+
+void stod(string s,double &k)
+{
+	k=0;
+	bool flag=1;
+	int i=0,count=0;
+	while(i<s.size() && s[i]!='.')
+	{
+		if(s[i]>='0' && s[i]<='9') k=k*10+(s[i]-'0');
+		else flag=0;
+		i++;
+	}
+	i++;
+	while(i<s.size())
+	{
+		count++;
+		if(s[i]>='0' && s[i]<='9') k=k*10+(s[i]-'0');
+		else flag=0;
+		i++;
+	}
+	if(count!=0)
+	{
+		double ten=1;
+		for(i=0;i<count;i++) ten*=10;
+		k/=ten;
+	}
+	if(!flag){
+		cout<<"Incorrect input (1 double), try again: ";
+		cin>>s;
+		stod(s,k);
+	}
 }
