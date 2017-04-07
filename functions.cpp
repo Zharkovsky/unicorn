@@ -74,10 +74,7 @@ double **sum (double **A, double **B, int An, int Am, int Bn, int Bm)
     {
     	cout << "Error. Try Again." << endl;
     	
-		double **C = new double *[An];
-		
-		for (int i = 0; i < An; ++i)
-        	C[i] = new double [Am];
+		double **C = newMatrix(An, Am);
         	
         for (int i = 0; i < An; ++i)
         	for (int j = 0; j < Am; ++j)
@@ -86,10 +83,7 @@ double **sum (double **A, double **B, int An, int Am, int Bn, int Bm)
     	return C;
     }
     
-    double **C = new double *[An];
-    
-    for (int i = 0; i < An; i++)
-        C[i] = new double [Am];
+    double **C = newMatrix(An, Am);
         
     for (int i = 0; i < An; ++i)
         for (int j = 0; j < Am; ++j)
@@ -100,10 +94,7 @@ double **sum (double **A, double **B, int An, int Am, int Bn, int Bm)
 
 double **trans (double **A, int n, int m)
 {
-    double **B = new double *[m];
-    
-    for (int i = 0; i < m; ++i)
-        B[i] = new double [n];
+    double **B = newMatrix(m ,n);
         
     for (int i = 0; i < n; ++i)
         for (int j = 0; j < m; ++j)
@@ -141,10 +132,7 @@ void delMatr (double **A, int lineA)
 
 void obrMatrix (double **A, int n) 
 {
-    double **matrix = new double *[n];
-    
-    for (int i = 0; i < n; ++i)
-        matrix[i] = new double[2*n];
+    double **matrix = newMatrix(n, 2*n);
        
     for (int i = 0; i < n; ++i)
         for (int j = 0; j < n; ++j)
