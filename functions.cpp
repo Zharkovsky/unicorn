@@ -124,13 +124,12 @@ double **multiplication (double **A, double **B, int lineA, int columnA, int lin
 	return result;
 }
 
-/*double ** Random(double **A, int lineA, int columnA)
+void Random(double **A, int lineA, int columnA)
 {
 	for (int i = 0; i < lineA ; i++)
 		for (int j = 0; j < columnA ; j++)
 			A[i][j] = rand()%20+1;
-	return A;
-}*/
+}
 
 void delMatr (double **A, int lineA)
 {
