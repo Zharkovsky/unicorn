@@ -26,50 +26,46 @@ int main()
 	int count = 0;
 	double **A; 
 	double **B; 
-	cout<<"1.To enter 2 the matrixes 2.Automatic generation of a matrix:"<<endl;
+	cout << "1.To enter 2 the matrixes 2.Automatic generation of a matrix:" << endl;
 	int i=0;
-	cin>>i;
-	cout<<"line 1,column 1 for first matrix A"<<endl;
-	cin>>line1;
-	cin>>column1;
-	cout<<"line 1,column 1 for second matrix B"<<endl;
-	cin>>line2;
-	cin>>column2;
+	cin >> i;
+	cout << "line 1,column 1 for first matrix A"<<endl;
+	cin >> line1;
+	cin >> column1;
+	cout << "line 1,column 1 for second matrix B"<<endl;
+	cin >> line2;
+	cin >> column2;
 	switch(i)
 	{
-	 case 1:
-	{ 		
-	double **A = new double *[line1];
-	double **B = new double *[line2];
-		
-	for (int i = 0; i < line1 ; ++i)
-		A[i] = new double [column1];
-		
-	for (int i = 0; i < line2 ; ++i)
-		B[i] = new double [column2];
-          cout<<"Enter first matrix A:"<<endl;
-          for(int i=0; i<line1;++i)
-           for(int j=0;j<column1;j++)
-            cin>>A[i][j];
-          cout<<"Enter second matrix B:"<<endl;
-          for(int i=0; i<line2;++i)
-           for(int j=0;j<column2;j++)
-            cin>>B[i][j]; 	 	
+		case 1:
+		{ 		
+			double **A = newMatrix(line1,column1);
+			double **B = newMatrix(line2,column2);
+	
+			cout << "Enter first matrix A:" << endl;
+			for (int i = 0; i < line1; ++i)
+			   for (int j = 0; j < column1; ++j)
+					cin >> A[i][j];
+			cout << "Enter second matrix B:" << endl;
+			
+			for (int i = 0; i < line2; ++i)
+				for(int j = 0; j < column2; ++j)
+					cin >> B[i][j]; 	 	
          	break;
-	}
-	 case 2:
-	{
-	  double **A=newMatrix(line1,column1);
-	  double **B=newMatrix(line2,column2);	
-	  Random(A,line1,column1);
-	  Random(B,line2,column2);
-	  cout<<"first matrix A:"<<endl;
-	  show (A,line1,column1);
-	  cout<<"second matrix B:"<<endl;
-	  show (B,line2,column2);
-	break;
-	 }
-	default: return 0;
+		}
+		case 2:
+		{
+			double **A = newMatrix(line1,column1);
+			double **B = newMatrix(line2,column2);	
+			Random(A,line1,column1);
+			Random(B,line2,column2);
+			cout << "first matrix A:" << endl;
+			show(A,line1,column1);
+			cout << "second matrix B:" << endl;
+			show(B,line2,column2);
+			break;
+		}
+		default: return 0;
 	}
 
     string s; //for input
@@ -273,7 +269,7 @@ int main()
             	cout << "Enter size of matrix (n and m): ";
             	cin >> s; 
 				stoi (s, line1);
-    	        cin>>s; 
+    	        cin >> s; 
 				stoi (s, column1);
                 
             	A = newMatrix (line1, column1);
@@ -299,7 +295,7 @@ int main()
             	A = newMatrix (line1, column1);
             	assert (A != NULL);
 	
-            	cout<<"Enter matrix: \n";
+            	cout << "Enter matrix: \n";
             	for (int i = 0; i < line1; ++i)
     		        for (int j = 0; j < column1; ++j)
     		        {
@@ -318,7 +314,7 @@ int main()
 	        	assert (B != NULL);
 	        	
     	        cout << "Enter matrix: \n";
-    	        for (int i = 0;i < line2; ++i)
+    	        for (int i = 0; i < line2; ++i)
             		for (int j = 0; j < column2; ++j)
     	        	{
     			        cin >> s;
