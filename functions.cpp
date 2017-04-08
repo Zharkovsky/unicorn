@@ -31,6 +31,7 @@ void show (double **a, int n, int m)
     {
         for (int j = 0; j < m; ++j)
         	cout << setw(15) << a[i][j];
+        
     	cout << endl;
     }
 }
@@ -45,7 +46,7 @@ double determinate (double **a, int size)
  	if (size == 1)
  	 	det = a[0][0];	
  	else if (size == 2)
-		det = a[0][0] * a[1][1] - a[0][1] * a[1][0];
+            det = a[0][0] * a[1][1] - a[0][1] * a[1][0];
 	else
 	{
   		matr = new double *[size-1];
@@ -126,6 +127,7 @@ void delMatr (double **A, int lineA)
 {
     for (int i = 0; i < lineA; ++i)
     	delete[] A[i];
+    
     delete[] A;
 }
 
@@ -157,14 +159,16 @@ void obrMatrix (double **A, int n)
 		{
             if (i != j)
 			{
-                ratio = matrix[j][i]/matrix[i][i];
-                for (k = 0; k < 2*n; ++k)
+                ratio = matrix[j][i] / matrix[i][i];
+                
+                for (k = 0; k < 2 * n; ++k)
 				{
                     matrix[j][k] -= ratio * matrix[i][k];
                 }
             }
         }
     }
+    
     for (i = 0; i < n; ++i)
 	{
         x = matrix[i][i];
@@ -201,9 +205,9 @@ int rank (double **matrix, int i, int j)
                     for (int d = 0; d < q; ++d)
                         B[c][d] = matrix[a+c][b+d];
                         
-                if(!(determinate(B,q) == 0)) 
-                { 
-                    r = q; 
+                if (!(determinate(B,q) == 0))
+                {
+                    r = q;
                 }
             }
         }
@@ -291,12 +295,12 @@ void stoi (string s, int &k)
 	k = 0;
 	bool flag = 1;
 	
-	for (int i = s.size()-1; i >= 0 && flag; --i)
+	for (int i = s.size() - 1; i >= 0 && flag; --i)
 	{
 		if (s[i] >= '0' && s[i] <= '9') 
-			k=k*10+(s[i]-'0');
+			k = k * 10 + (s[i]-'0');
 		else 
-			flag=0;
+			flag = 0;
 	}
 	
 	if (!flag)
@@ -330,7 +334,7 @@ void stod (string s, double &k)
 		if (s[i] >= '0' && s[i] <= '9') 
 			k = k * 10 + (s[i] - '0');
 		else 
-			flag=0;
+			flag = 0;
 		++i;
 	}
 	
@@ -338,7 +342,7 @@ void stod (string s, double &k)
 	{
 		double ten = 1;
 		for (i = 0; i < count; ++i) 
-			ten*=10;
+			ten *= 10;
 		k /= ten;
 	}
 	
