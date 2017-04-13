@@ -16,13 +16,13 @@ double **newMatrix (int line, int column)
 	return matrix;
 }
 
-double **mulNum (double **A, int n, int m, double digit)
+double **mulNum (double **firstMatrix, int n, int m, double digit)
 {
     for (int i = 0; i < n; ++i)
         for (int j = 0; j < m; ++j)
-        	A[i][j] *= digit;
+        	firstMatrix[i][j] *= digit;
 
-    return A;
+    return firstMatrix;
 }
 
 void show (double **a, int n, int m)
@@ -69,7 +69,7 @@ double determinate (double **a, int size)
 	return det;
 }
 
-double **sum (double **A, double **B, int An, int Am, int Bn, int Bm)
+double **sum (double **firstMatrix, double **secondMatrix, int An, int Am, int Bn, int Bm)
 {	
     if (An != Bn || Am != Bm) 
     {
@@ -88,56 +88,56 @@ double **sum (double **A, double **B, int An, int Am, int Bn, int Bm)
         
     for (int i = 0; i < An; ++i)
         for (int j = 0; j < Am; ++j)
-            C[i][j] = A[i][j] + B[i][j];
+            C[i][j] = firstMatrix[i][j] + secondMatrix[i][j];
             
     return C;
 }
 
-double **trans (double **A, int n, int m)
+double **trans (double **firstMatrix, int n, int m)
 {
-    double **B = newMatrix(m ,n);
+    double **secondMatrix = newMatrix(m ,n);
         
     for (int i = 0; i < n; ++i)
         for (int j = 0; j < m; ++j)
-            B[j][i] = A[i][j];
+            secondMatrix[j][i] = firstMatrix[i][j];
             
-    return B;
+    return secondMatrix;
 }
 
-double **multiplication (double **A, double **B, int lineA, int columnA, int lineB, int columnB)
+double **multiplication (double **firstMatrix, double **secondMatrix, int lineA, int columnA, int lineB, int columnB)
 {
 	double **result = newMatrix(lineA, columnB);
 		
 	for (int i = 0; i < lineA; i++)
 		for (int j = 0; j < columnB; j++)
 			for (int k =0; k < lineB; k++)
-				result[i][j] += A[i][k]*B[k][j];
+				result[i][j] += firstMatrix[i][k]*secondMatrix[k][j];
 				
 	return result;
 }
 
-void Random(double **A, int lineA, int columnA)
+void Random(double **firstMatrix, int lineA, int columnA)
 {
 	for (int i = 0; i < lineA ; i++)
 		for (int j = 0; j < columnA ; j++)
-			A[i][j] = rand()%20+1;
+			firstMatrix[i][j] = rand()%20+1;
 }
 
-void delMatr (double **A, int lineA)
+void delMatr (double **firstMatrix, int lineA)
 {
     for (int i = 0; i < lineA; ++i)
-    	delete[] A[i];
+    	delete[] firstMatrix[i];
     
-    delete[] A;
+    delete[] firstMatrix;
 }
 
-void obrMatrix (double **A, int n) 
+void obrMatrix (double **firstMatrix, int n) 
 {
     double **matrix = newMatrix(n, 2*n);
        
     for (int i = 0; i < n; ++i)
         for (int j = 0; j < n; ++j)
-            matrix[i][j] = A[i][j];
+            matrix[i][j] = firstMatrix[i][j];
     
     double ratio, x;
     int i, j, k;
@@ -195,7 +195,7 @@ int rank (double **matrix, int i, int j)
  
     while (q <= min) 
     { 
-        double **B = newMatrix (q, q); 
+        double **secondMatrix = newMatrix (q, q); 
  
         for (int a = 0; a < (i-(q-1)); ++a) 
         {
@@ -203,23 +203,23 @@ int rank (double **matrix, int i, int j)
             {
                 for (int c = 0; c < q; ++c)
                     for (int d = 0; d < q; ++d)
-                        B[c][d] = matrix[a+c][b+d];
+                        secondMatrix[c][d] = matrix[a+c][b+d];
                         
-                if (!(determinate(B,q) == 0))
+                if (!(determinate(secondMatrix,q) == 0))
                 {
                     r = q;
                 }
             }
         }
         
-        delMatr (B,q);
+        delMatr (secondMatrix,q);
     	q++; 
     }
     
     return r;
 }
 
-void typeMatr (double **A, int n, int m)
+void typeMatr (double **firstMatrix, int n, int m)
 {
 	cout << "Type of matrix:";
 	
@@ -230,7 +230,7 @@ void typeMatr (double **A, int n, int m)
 	
 	for (int i = 0; i < n; ++i)
 		for (int j = 0; j < m; ++j)
-			if (A[i][j] != 0) 
+			if (firstMatrix[i][j] != 0) 
 				temp = false;
 	
 	if (temp)
@@ -245,7 +245,7 @@ void typeMatr (double **A, int n, int m)
 	
 	for (int i = 0; i < n; ++i)
 		for (int j = 0; j < m; ++j)
-			if (i != j && A[i][j] != 0) 
+			if (i != j && firstMatrix[i][j] != 0) 
 				temp = false;
 	
 	if (temp) 
@@ -257,9 +257,9 @@ void typeMatr (double **A, int n, int m)
 	{
 		for (int j = 0; j < m; ++j)
 		{
-			if (i != j && A[i][j] != 0) 
+			if (i != j && firstMatrix[i][j] != 0) 
 				temp = false;
-			if (i == j && A[i][j] != 1) 
+			if (i == j && firstMatrix[i][j] != 1) 
 				temp = false;
 		}
 	}
@@ -271,7 +271,7 @@ void typeMatr (double **A, int n, int m)
 	
 	for (int i = 0; i < n; ++i)
 		for (int j = 0; j < m; ++j)
-			if (i < j && A[i][j] != 0) 
+			if (i < j && firstMatrix[i][j] != 0) 
 				temp = false;
 	
 	if (temp) 
@@ -281,7 +281,7 @@ void typeMatr (double **A, int n, int m)
 	
 	for (int i = 0; i < n; i++)
 		for (int j = 0; j < m; j++)
-			if (i > j && A[i][j] != 0) 
+			if (i > j && firstMatrix[i][j] != 0) 
 				temp = false;
 				
 	if (temp) 
@@ -290,15 +290,15 @@ void typeMatr (double **A, int n, int m)
 	cout << endl;
 }
 
-void stoi (string s, int &k)
+void stoi (string inputString, int &k)
 {
 	k = 0;
 	bool flag = 1;
 	
-	for (int i = s.size() - 1; i >= 0 && flag; --i)
+	for (int i = inputString.size() - 1; i >= 0 && flag; --i)
 	{
-		if (s[i] >= '0' && s[i] <= '9') 
-			k = k * 10 + (s[i]-'0');
+		if (inputString[i] >= '0' && inputString[i] <= '9') 
+			k = k * 10 + (inputString[i]-'0');
 		else 
 			flag = 0;
 	}
@@ -306,21 +306,21 @@ void stoi (string s, int &k)
 	if (!flag)
 	{
 		cout << "Incorrect input (int), try again: ";
-		cin >> s;
-		stoi (s, k);
+		cin >> inputString;
+		stoi (inputString, k);
 	}
 }
 
-void stod (string s, double &k)
+void stod (string inputString, double &k)
 {
 	k = 0;
 	bool flag = 1;
 	int i = 0, count = 0;
 	
-	while (i < s.size() && s[i] != '.')
+	while (i < inputString.size() && inputString[i] != '.')
 	{
-		if (s[i] >= '0' && s[i] <= '9') 
-			k = k * 10 + (s[i] - '0');
+		if (inputString[i] >= '0' && inputString[i] <= '9') 
+			k = k * 10 + (inputString[i] - '0');
 		else 
 			flag=0;
 		++i;
@@ -328,11 +328,11 @@ void stod (string s, double &k)
 	
 	++i;
 	
-	while (i < s.size())
+	while (i < inputString.size())
 	{
 		++count;
-		if (s[i] >= '0' && s[i] <= '9') 
-			k = k * 10 + (s[i] - '0');
+		if (inputString[i] >= '0' && inputString[i] <= '9') 
+			k = k * 10 + (inputString[i] - '0');
 		else 
 			flag = 0;
 		++i;
@@ -349,7 +349,7 @@ void stod (string s, double &k)
 	if (!flag)
 	{
 		cout << "Incorrect input (double), try again: ";
-		cin >> s;
-		stod (s, k);
+		cin >> inputString;
+		stod (inputString, k);
 	}
 }
