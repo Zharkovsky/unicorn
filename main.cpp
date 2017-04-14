@@ -17,129 +17,40 @@ void show (double **, int, int);
 void typeMatr (double **, int, int); //TypeMatr(A,An);
 void obrMatrix (float **, int); 
 int rank (double **, int, int); 
+void stoi (string inputString, int &k); //input String to int
+void stod (string inputString, double &k); //input String to double
+//void enterMatr(double ***, int &, int &, double **, int &, int &);
+void printCommands();
 
 int main()
 {
 //	srand(time(0));
 	int line1 = 0, line2 = 0, column1 = 0, column2 = 0;
 	double number;
-	int count = 0;
+	int command = 0;
 	double **firstMatrix; 
 	double **secondMatrix; 
-	cout << ENTER_COMMAND << endl; 
-	cout << YOUR_MATRIX << endl << RANDOM_MATRIX << endl;
-	int i=0;  //i is command
-	cin >> i;
-    
-    if (i == 2)
-    {
-        cout << ENTER_SIZE << FIRST_MATRIX <<endl;
-	    cin >> line1;
-	    cin >> column1;
-	    cout << ENTER_SIZE << SECOND_MATRIX <<endl;
-	    cin >> line2;
-	    cin >> column2;
-	    
-		double **firstMatrix = newMatrix(line1,column1);
-		double **secondMatrix = newMatrix(line2,column2);	
-		
-		Random(firstMatrix,line1,column1);
-		Random(secondMatrix,line2,column2);
-		cout << FIRST_MATRIX << endl;
-		show(firstMatrix,line1,column1);
-		cout << SECOND_MATRIX << endl;
-		show(secondMatrix,line2,column2);
-	}
+	
+	enterMatr(&firstMatrix, line1, column1, &secondMatrix, line2, column2);
 
     string stringForInput; //for input
-    int k = 1;
-    cout << ENTER_AMOUNT;
-    cin >> stringForInput;
-    stoi (stringForInput, k);
-    
-    if (k == 1)
-    {
-    	cout << ENTER_SIZE;
-    	cin >> stringForInput; 
-		stoi (stringForInput, line1);
-    	cin >> stringForInput; 
-		stoi (stringForInput, column1);
-		
-    	firstMatrix = newMatrix (line1, column1);
-    	assert (firstMatrix != NULL);
-    	
-    	cout << ENTER_MATRIX;
-    	for (int i = 0; i < line1; ++i)
-    		for (int j = 0; j < column1; ++j)
-    		{
-    			cin >> stringForInput;
-    			stod (stringForInput, firstMatrix[i][j]);
-    		}
-    }
-    else
-    {
-    	if (k > 2) 
-			cout << FALSE_AMOUNT_OF_MATRIX << endl;
-    	cout << ENTER_SIZE;
-    	cin >> stringForInput; 
-		stoi (stringForInput, line1);
-    	cin >> stringForInput; 
-		stoi (stringForInput, column1);
-		
-    	firstMatrix = newMatrix (line1, column1);
-    	assert (firstMatrix != NULL);
-	
-    	cout << ENTER_MATRIX;
-    	for (int i = 0;i < line1; ++i)
-    		for (int j = 0;j < column1; ++j)
-    		{
-    			cin >> stringForInput;
-    			stod (stringForInput, firstMatrix[i][j]);
-    		}
-    			
-    	cout << ENTER_SIZE << SECOND_MATRIX;
-    	cin >> stringForInput; 
-		stoi (stringForInput, line2);
-    	cin >> stringForInput; 
-		stoi (stringForInput, column2);
-		
-		secondMatrix = newMatrix (line2, column2);
-		assert (secondMatrix != NULL);
-    	cout << ENTER_MATRIX;
-    	for (int i = 0;i < line2; ++i)
-    		for (int j = 0; j < column2; ++j)
-    		{
-    			cin >> stringForInput;
-    			stod (stringForInput, secondMatrix[i][j]);
-    		}
-    	
-    }
     
     while (1)
     {
         //assert(check_matr(firstMatrix,line1,column1,secondMatrix,line2,column2));
-        cout << CHOOSE_COMMAND << endl;
-        cout << EXIT << endl;
-        cout << MULTIPLICATION_BY_DIGIT << endl;
-        cout << MULTIPLICATION_2_MATRIX << endl;
-        cout << TRANSPOSING << endl;
-        cout << DETERMINANT << endl;
-        cout << MATRIX_SUM << endl;
-        cout << MATRIX_TYPE << endl;
-        cout << INVERTIBLE_MATRIX << endl;
-        cout << MATRIX_RANK << endl;
+        printCommands();
         
         cin >> stringForInput; 
-		stoi (stringForInput, count);
+		stoi (stringForInput, command);
 		
-        switch (count)
+        switch (command)
         {
-            case 0: 
+            case EXIT_COMMAND: 
             {
 				return 0;
 			}
 			
-            case 1:
+            case MULTIPLICATION_BY_DIGIT_COMMAND:
             {
             	cout << ENTER_DIGIT;
             	cin >> stringForInput; 
@@ -155,7 +66,7 @@ int main()
 				break;
 			}
 			
-            case 2:
+            case MULTIPLICATION_2_MATRIX_COMMAND:
             {
 				if (column1 != line2)
 					cout << endl << FALSE_DEMENSION << endl; 
@@ -172,11 +83,10 @@ int main()
 				break;
 			}
 			
-            case 3:
+            case TRANSPOSING_COMMAND:
             {
             	int lineC2 = column1, columnC2 = line1;
             	double **C2 = newMatrix (lineC2, columnC2);
-            	
 				C2 = trans (firstMatrix, line1, column1);
 				show (C2, lineC2, columnC2);
 				delMatr (C2, lineC2);
@@ -184,7 +94,7 @@ int main()
 				break;
 			}
 			
-            case 4:
+            case DETERMINANT_COMMAND:
 	        {
 	  	    //works for 'firstMatrix' matrix
 	            if(line1!=column1) 
@@ -195,7 +105,7 @@ int main()
 	            break;
 	        }
 	        
-	        case 5:
+	        case MATRIX_SUM_COMMAND:
 	        {
 	            int lineC2 = column1, columnC2 = line1;
             	double **C2 = newMatrix (lineC2, columnC2);
@@ -208,15 +118,14 @@ int main()
 			}
 
 
-            case 6:
+            case MATRIX_TYPE_COMMAND:
             {
             	typeMatr (firstMatrix, line1, column1);
 				break;
             }
             
-            case 7: break;
             
-            case 8:
+            case INVERTIBLE_MATRIX_COMMAND:
             {
           	    if ( line1 != column1) 
 				    cout << FALSE_SIZE << endl;
@@ -226,7 +135,7 @@ int main()
                 break;	
             }
 			  
-			case 9:
+			case MATRIX_RANK_COMMAND:
 			{
 				cout << RANK_IS << rank(firstMatrix, line1, column1) << endl;
 				break;
@@ -236,73 +145,12 @@ int main()
 	            cout << FALSE_COMMAND << endl;
 				
         }
+        
         cout << SAVE_OR_NOT;
         char c;
         cin >> c;
         if (c != 'y')
-        {
-        	cout << ENTER_AMOUNT;
-            cin >> k;
-            
-            if (k == 1)
-            {
-                delMatr (firstMatrix, line1);
-            	cout << ENTER_SIZE;
-            	cin >> stringForInput; 
-				stoi (stringForInput, line1);
-    	        cin >> stringForInput; 
-				stoi (stringForInput, column1);
-                
-            	firstMatrix = newMatrix (line1, column1);
-            	assert (firstMatrix != NULL);
-            	
-    	        cout << ENTER_MATRIX;
-    	        for (int i = 0; i < line1; ++i)
-    		        for (int j = 0; j < column1; ++j)
-    		        {
-    			        cin >> stringForInput;
-    			        stod (stringForInput, firstMatrix[i][j]);
-    		        }
-            }
-            else
-            {
-                delMatr (firstMatrix, line1);
-    	        cout << ENTER_SIZE << FIRST_MATRIX;
-            	cin >> stringForInput; 
-				stoi (stringForInput, line1);
-    	        cin >> stringForInput; 
-				stoi (stringForInput, column1);
-				
-            	firstMatrix = newMatrix (line1, column1);
-            	assert (firstMatrix != NULL);
-	
-            	cout << ENTER_MATRIX;
-            	for (int i = 0; i < line1; ++i)
-    		        for (int j = 0; j < column1; ++j)
-    		        {
-    			        cin >> stringForInput;
-    			        stod (stringForInput, firstMatrix[i][j]);
-    		        }
-    		        
-    			delMatr (secondMatrix, line2);
-            	cout << ENTER_SIZE << SECOND_MATRIX;
-            	cin >> stringForInput; 
-				stoi(stringForInput, line2);
-    	        cin >> stringForInput; 
-				stoi (stringForInput, column2);
-                
-	        	secondMatrix = newMatrix (line2, column2);
-	        	assert (secondMatrix != NULL);
-	        	
-    	        cout << ENTER_MATRIX;
-    	        for (int i = 0; i < line2; ++i)
-            		for (int j = 0; j < column2; ++j)
-    	        	{
-    			        cin >> stringForInput;
-    			        stod (stringForInput, secondMatrix[i][j]);
-    		        }
-            }
-		}
+            enterMatr(&firstMatrix, line1, column1, &secondMatrix, line2, column2);
     }
     
     delMatr (firstMatrix, line1);
