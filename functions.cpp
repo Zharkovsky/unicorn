@@ -1,11 +1,8 @@
-#include <iostream>
-#include <iomanip>
+#include "vyvod.h"
 #include <cmath>
 #include <ctime>
 #include <string>
 #include "CONSTANTS.cpp"
-
-using namespace std;
 
 double **newMatrix (int line, int column)
 {
@@ -26,16 +23,6 @@ double **mulNum (double **firstMatrix, int n, int m, double digit)
     return firstMatrix;
 }
 
-void show (double **a, int n, int m)
-{
-    for (int i = 0; i < n; ++i)
-    {
-        for (int j = 0; j < m; ++j)
-        	cout << setw(15) << a[i][j];
-        
-    	cout << endl;
-    }
-}
 
 
 double determinate (double **a, int size)
