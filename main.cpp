@@ -1,11 +1,12 @@
-#include <iostream>
 #include <cstring>
-#include <string>
 #include <cassert>
+#include <cmath>
+#include <ctime>
+#include <string>
+#include "vyvod.h"
 #include "functions.cpp"
 #include "CONSTANTS.cpp"
 
-using namespace std;
 
 double **newMatrix (int line, int column);
 double **sum (double **, double **, int, int, int, int); //A=Sum(B,C,Bn,Bm,Cn,Cm);
@@ -13,7 +14,6 @@ double **mulNum (double **, int, int, double); //A=MulNum(B,Bn,Bm,digit)
 double **multiplication (double **, double **, int, int, int, int); //A=Mul(B,C,Bn,Bm,Cn,Cm);
 double **trans (double **, int, int); //A=Trans(A);
 double determinate (double **, int, int); //det=Determinate(A,An,Am);
-void show (double **, int, int);
 void typeMatr (double **, int, int); //TypeMatr(A,An);
 void obrMatrix (float **, int); 
 int rank (double **, int, int); 
