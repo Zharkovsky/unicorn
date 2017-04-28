@@ -4,7 +4,8 @@
 #include <ctime>
 #include <string>
 #include <iostream>
-#include "vyvod.h"
+#include "IO/vyvod.h"
+#include "IO/vvod.h"
 #include "functions.cpp"
 #include "CONSTANTS.cpp"
 using namespace std;
@@ -20,7 +21,6 @@ void obrMatrix (float **, int);
 int rank (double **, int, int); 
 void stoi (string inputString, int &k); //input String to int
 void stod (string inputString, double &k); //input String to double
-//void enterMatr(double ***, int &, int &, double **, int &, int &);
 void printCommands();
 
 int main()
