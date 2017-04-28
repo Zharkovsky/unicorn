@@ -12,7 +12,6 @@ void delMatr (double **firstMatrix, int lineA);
 void obrMatrix (double **firstMatrix, int n);
 int rank (double **matrix, int i, int j);
 void typeMatr (double **firstMatrix, int n, int m);
-void printCommands();
 #endif
 
 

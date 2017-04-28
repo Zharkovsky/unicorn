@@ -1,4 +1,7 @@
-#include "vyvod.h"
+#ifndef functions
+#define functions
+
+#include "IO/vyvod.h"
 #include <cmath>
 #include <ctime>
 #include <string>
@@ -276,16 +279,67 @@ void typeMatr (double **firstMatrix, int n, int m)
 	cout << endl;
 }
 
-void printCommands()
+void stoi (string inputString, int &k)
 {
-	cout << CHOOSE_COMMAND << endl;
-    cout << EXIT << endl;
-    cout << MULTIPLICATION_BY_DIGIT << endl;
-    cout << MULTIPLICATION_2_MATRIX << endl;
-    cout << TRANSPOSING << endl;
-    cout << DETERMINANT << endl;
-    cout << MATRIX_SUM << endl;
-    cout << MATRIX_TYPE << endl;
-    cout << INVERTIBLE_MATRIX << endl;
-    cout << MATRIX_RANK << endl;
+	k = 0;
+	bool flag = 1;
+	
+	for (int i = inputString.size() - 1; i >= 0 && flag; --i)
+	{
+		if (inputString[i] >= '0' && inputString[i] <= '9') 
+			k = k * 10 + (inputString[i]-'0');
+		else 
+			flag = 0;
+	}
+	
+	if (!flag)
+	{
+		cout << "Incorrect input (int), try again: ";
+		cin >> inputString;
+		stoi (inputString, k);
+	}
 }
+
+void stod (string inputString, double &k)
+{
+	k = 0;
+	bool flag = 1;
+	int i = 0, count = 0;
+	
+	while (i < inputString.size() && inputString[i] != '.')
+	{
+		if (inputString[i] >= '0' && inputString[i] <= '9') 
+			k = k * 10 + (inputString[i] - '0');
+		else 
+			flag=0;
+		++i;
+	}
+	
+	++i;
+	
+	while (i < inputString.size())
+	{
+		++count;
+		if (inputString[i] >= '0' && inputString[i] <= '9') 
+			k = k * 10 + (inputString[i] - '0');
+		else 
+			flag = 0;
+		++i;
+	}
+	
+	if (count != 0)
+	{
+		double ten = 1;
+		for (i = 0; i < count; ++i) 
+			ten *= 10;
+		k /= ten;
+	}
+	
+	if (!flag)
+	{
+		cout << "Incorrect input (double), try again: ";
+		cin >> inputString;
+		stod (inputString, k);
+	}
+}
+#endif

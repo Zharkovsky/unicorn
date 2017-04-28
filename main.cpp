@@ -4,12 +4,11 @@
 #include <ctime>
 #include <string>
 #include <iostream>
-#include "vyvod.h"
+#include "IO/vyvod.h"
+#include "IO/vvod.h"
 #include "functions.h"
 #include "CONSTANTS.cpp"
 using namespace std;
-
-void printCommands();
 
 int main()
 {
