@@ -40,7 +40,6 @@ void enterMatr(double ***firstMatrix, int &line1, int &column1, double ***second
     		        	{
     			        	cin >> stringForInput;
     			        	stod (stringForInput, (*firstMatrix)[i][j]);
-    			        	cout<<  stringForInput;
     		        	}
             		
 					break;

@@ -12,7 +12,7 @@ using namespace std;
 
 int main()
 {
-//	srand(time(0));
+
 	int line1 = 0, line2 = 0, column1 = 0, column2 = 0;
 	double number;
 	int command = 0;
@@ -21,7 +21,7 @@ int main()
 	
 	enterMatr(&firstMatrix, line1, column1, &secondMatrix, line2, column2);
 
-    string stringForInput; //for input
+    string stringForInput; 
     
     while (1)
     {
@@ -134,11 +134,19 @@ int main()
 				
         }
         
-        cout << SAVE_OR_NOT;
         char c;
-        cin >> c;
-        if (c != 'y')
-            enterMatr(&firstMatrix, line1, column1, &secondMatrix, line2, column2);
+        do
+        {
+        	cout << SAVE_OR_NOT << endl;
+        	cin >> c;
+        	if (c != 'y' && c!= 'n')
+        			cout << FALSE_COMMAND << endl;
+        	else
+        		break;
+        }while (1);  
+        
+		if (c == 'n')
+            	enterMatr(&firstMatrix, line1, column1, &secondMatrix, line2, column2);      
     }
     
     delMatr (firstMatrix, line1);
