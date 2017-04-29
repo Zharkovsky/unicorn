@@ -36,40 +36,42 @@ int main()
             case EXIT_COMMAND: 
             {
 				return 0;
-			}
+	    }
 			
             case MULTIPLICATION_BY_DIGIT_COMMAND:
             {
             	cout << ENTER_DIGIT;
             	cin >> stringForInput; 
-				stod (stringForInput, number);
+		stod (stringForInput, number);
 				
             	int lineC1 = line1, columnC1 = column1;
             	double **C1 = newMatrix (lineC1, columnC1);
             	
-				C1 = mulNum (firstMatrix, line1, column1, number);
-				show (C1, lineC1, columnC1);
-				delMatr (C1, lineC1);
+		C1 = mulNum (firstMatrix, line1, column1, number);
+		show (C1, lineC1, columnC1);
+		delMatr (C1, lineC1);
 				
-				break;
-			}
+		break;
+	  }
 			
             case MULTIPLICATION_2_MATRIX_COMMAND:
             {
-				if (column1 != line2)
-					cout << endl << FALSE_DEMENSION << endl; 
-				else
-				{
-					double **C;
-					int lineC = line1, columnC = column2;
+		    if (!test_multiplication(line1, column1, line2, column2))
+		    {
+			    cout << FALSE_DEMENSION;
+			    break;
+		    }
+				
+			double **C;
+			int lineC = line1, columnC = column2;
 					
-					C = multiplication (firstMatrix, secondMatrix, line1, column1, line2, column2);
-					show (C, lineC, columnC);
-					delMatr (C, lineC);
-				}
+			C = multiplication (firstMatrix, secondMatrix, line1, column1, line2, column2);
+			show (C, lineC, columnC);
+			delMatr (C, lineC);
+			
 				
 				break;
-			}
+	    }
 			
             case TRANSPOSING_COMMAND:
             {
@@ -87,7 +89,7 @@ int main()
 	  	    //works for 'firstMatrix' matrix
 	            if(line1!=column1) 
 				    cout << FALSE_SIZE << endl;
-                else
+                    else
 		            cout << DETERMINANT_IS << determinate (firstMatrix, line1) << endl;
 		            
 	            break;
@@ -96,13 +98,13 @@ int main()
 	        case MATRIX_SUM_COMMAND:
 	        {
 	            int lineC2 = column1, columnC2 = line1;
-            	double **C2 = newMatrix (lineC2, columnC2);
+            	    double **C2 = newMatrix (lineC2, columnC2);
             	
-		        C2 = sum (firstMatrix, secondMatrix, line1, column1, line2, column2);
-		        show (C2, lineC2, columnC2);
-		        delMatr (C2, lineC2);
+		     C2 = sum (firstMatrix, secondMatrix, line1, column1, line2, column2);
+		     show (C2, lineC2, columnC2);
+		     delMatr (C2, lineC2);
 		        
-				break;
+	             break;
 			}
 
 
