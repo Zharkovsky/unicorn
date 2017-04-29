@@ -59,20 +59,7 @@ double determinate (double **a, int size)
 }
 
 double **sum (double **firstMatrix, double **secondMatrix, int An, int Am, int Bn, int Bm)
-{	
-    if (An != Bn || Am != Bm) 
-    {
-    	cout << "Error. Try Again." << endl;
-    	
-		double **C = newMatrix(An, Am);
-        	
-        for (int i = 0; i < An; ++i)
-        	for (int j = 0; j < Am; ++j)
-            	C[i][j] = 0.0;
-            	
-    	return C;
-    }
-    
+{	 
     double **C = newMatrix(An, Am);
         
     for (int i = 0; i < An; ++i)

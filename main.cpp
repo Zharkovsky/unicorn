@@ -8,11 +8,12 @@
 #include "IO/vvod.h"
 #include "functions.h"
 #include "CONSTANTS.cpp"
+#include "Verification.cpp"
 using namespace std;
 
 int main()
 {
-//	srand(time(0));
+
 	int line1 = 0, line2 = 0, column1 = 0, column2 = 0;
 	double number;
 	int command = 0;
@@ -21,7 +22,7 @@ int main()
 	
 	enterMatr(&firstMatrix, line1, column1, &secondMatrix, line2, column2);
 
-    string stringForInput; //for input
+    string stringForInput; 
     
     while (1)
     {
@@ -36,40 +37,38 @@ int main()
             case EXIT_COMMAND: 
             {
 				return 0;
-			}
+	    }
 			
             case MULTIPLICATION_BY_DIGIT_COMMAND:
             {
             	cout << ENTER_DIGIT;
             	cin >> stringForInput; 
-				stod (stringForInput, number);
+		stod (stringForInput, number);
 				
             	int lineC1 = line1, columnC1 = column1;
             	double **C1 = newMatrix (lineC1, columnC1);
             	
-				C1 = mulNum (firstMatrix, line1, column1, number);
-				show (C1, lineC1, columnC1);
-				delMatr (C1, lineC1);
+		C1 = mulNum (firstMatrix, line1, column1, number);
+		show (C1, lineC1, columnC1);
+		delMatr (C1, lineC1);
 				
-				break;
-			}
+		break;
+	  }
 			
             case MULTIPLICATION_2_MATRIX_COMMAND:
             {
-				if (column1 != line2)
-					cout << endl << FALSE_DEMENSION << endl; 
-				else
-				{
-					double **C;
-					int lineC = line1, columnC = column2;
-					
-					C = multiplication (firstMatrix, secondMatrix, line1, column1, line2, column2);
-					show (C, lineC, columnC);
-					delMatr (C, lineC);
-				}
+		    if (!test_multiplication(line1, column1, line2, column2))
+			    break;
 				
-				break;
-			}
+			double **C;
+			int lineC = line1, columnC = column2;
+					
+			C = multiplication (firstMatrix, secondMatrix, line1, column1, line2, column2);
+			show (C, lineC, columnC);
+			delMatr (C, lineC);
+			
+			break;
+	    }
 			
             case TRANSPOSING_COMMAND:
             {
@@ -85,24 +84,27 @@ int main()
             case DETERMINANT_COMMAND:
 	        {
 	  	    //works for 'firstMatrix' matrix
-	            if(line1!=column1) 
-				    cout << FALSE_SIZE << endl;
-                else
-		            cout << DETERMINANT_IS << determinate (firstMatrix, line1) << endl;
+	            if (!test_determinant(line1,column1))
+			    break;
+			
+		    cout << DETERMINANT_IS << determinate (firstMatrix, line1) << endl;
 		            
 	            break;
 	        }
 	        
 	        case MATRIX_SUM_COMMAND:
 	        {
+			if (!test_sum(line1,column1,line2,column2)
+				    break;
+			    
 	            int lineC2 = column1, columnC2 = line1;
-            	double **C2 = newMatrix (lineC2, columnC2);
+            	    double **C2 = newMatrix (lineC2, columnC2);
             	
-		        C2 = sum (firstMatrix, secondMatrix, line1, column1, line2, column2);
-		        show (C2, lineC2, columnC2);
-		        delMatr (C2, lineC2);
+		     C2 = sum (firstMatrix, secondMatrix, line1, column1, line2, column2);
+		     show (C2, lineC2, columnC2);
+		     delMatr (C2, lineC2);
 		        
-				break;
+	             break;
 			}
 
 
@@ -134,11 +136,19 @@ int main()
 				
         }
         
-        cout << SAVE_OR_NOT;
         char c;
-        cin >> c;
-        if (c != 'y')
-            enterMatr(&firstMatrix, line1, column1, &secondMatrix, line2, column2);
+        do
+        {
+        	cout << SAVE_OR_NOT << endl;
+        	cin >> c;
+        	if (c != 'y' && c!= 'n')
+        			cout << FALSE_COMMAND << endl;
+        	else
+        		break;
+        }while (1);  
+        
+		if (c == 'n')
+            	enterMatr(&firstMatrix, line1, column1, &secondMatrix, line2, column2);      
     }
     
     delMatr (firstMatrix, line1);
