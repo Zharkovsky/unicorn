@@ -58,7 +58,7 @@ int main()
             {
 		    if (!test_multiplication(line1, column1, line2, column2))
 		    {
-			    cout << FALSE_DEMENSION;
+			    cout << FALSE_DEMENSION << endl;
 			    break;
 		    }
 				
@@ -97,6 +97,11 @@ int main()
 	        
 	        case MATRIX_SUM_COMMAND:
 	        {
+			if (!test_sum(line1,column1,line2,column2)
+			 {
+				    cout << FALSE_DEMENSION << endl;
+				    break;
+			 }
 	            int lineC2 = column1, columnC2 = line1;
             	    double **C2 = newMatrix (lineC2, columnC2);
             	
