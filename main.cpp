@@ -8,6 +8,7 @@
 #include "IO/vvod.h"
 #include "functions.h"
 #include "CONSTANTS.cpp"
+#include "Verification.cpp"
 using namespace std;
 
 int main()
@@ -57,10 +58,7 @@ int main()
             case MULTIPLICATION_2_MATRIX_COMMAND:
             {
 		    if (!test_multiplication(line1, column1, line2, column2))
-		    {
-			    cout << FALSE_DEMENSION << endl;
 			    break;
-		    }
 				
 			double **C;
 			int lineC = line1, columnC = column2;
@@ -69,8 +67,7 @@ int main()
 			show (C, lineC, columnC);
 			delMatr (C, lineC);
 			
-				
-				break;
+			break;
 	    }
 			
             case TRANSPOSING_COMMAND:
@@ -87,10 +84,10 @@ int main()
             case DETERMINANT_COMMAND:
 	        {
 	  	    //works for 'firstMatrix' matrix
-	            if(line1!=column1) 
-				    cout << FALSE_SIZE << endl;
-                    else
-		            cout << DETERMINANT_IS << determinate (firstMatrix, line1) << endl;
+	            if (!test_determinant(line1,column1))
+			    break;
+			
+		    cout << DETERMINANT_IS << determinate (firstMatrix, line1) << endl;
 		            
 	            break;
 	        }
@@ -98,10 +95,8 @@ int main()
 	        case MATRIX_SUM_COMMAND:
 	        {
 			if (!test_sum(line1,column1,line2,column2)
-			 {
-				    cout << FALSE_DEMENSION << endl;
 				    break;
-			 }
+			    
 	            int lineC2 = column1, columnC2 = line1;
             	    double **C2 = newMatrix (lineC2, columnC2);
             	
