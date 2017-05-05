@@ -5,8 +5,12 @@ using namespace std;
 
 void enterMatr(double ***firstMatrix, int &line1, int &column1, double ***secondMatrix, int &line2, int &column2)
 {
-	cout << ENTER_COMMAND << endl; 
-	cout << YOUR_MATRIX << endl << RANDOM_MATRIX << endl;
+	system("cls");
+	cout << "____________________________________\n";
+	cout << COMMANDS;
+	cout << YOUR_MATRIX << RANDOM_MATRIX;
+	cout << "____________________________________\n";
+	cout << ENTER_COMMAND;
 	
 	int command = 0;  //i is command
 	
@@ -25,6 +29,8 @@ void enterMatr(double ***firstMatrix, int &line1, int &column1, double ***second
             switch(command)
             {
             	case oneMatr: {
+            		secondMatrix=NULL;
+            		
            		 	cout << ENTER_SIZE;
             		cin >> stringForInput; 
 					stoi (stringForInput, line1);

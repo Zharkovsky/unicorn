@@ -8,10 +8,11 @@ void show (double **a, int n, int m)
     for (int i = 0; i < n; ++i)
     {
         for (int j = 0; j < m; ++j)
-        	cout << setw(15) << a[i][j];
+        	//cout << setw(15) << a[i][j];
+        	cout << a[i][j] << " ";
     	cout << endl;
     }
- return;
+    return;
 }
 
 void printCommands()
@@ -26,4 +27,5 @@ void printCommands()
     cout << MATRIX_TYPE << endl;
     cout << INVERTIBLE_MATRIX << endl;
     cout << MATRIX_RANK << endl;
+    cout << ENTER_NEW_MATRIX << endl;
 }

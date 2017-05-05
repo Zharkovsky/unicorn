@@ -5,6 +5,7 @@
 #include <cmath>
 #include <ctime>
 #include <string>
+#include <sstream>
 #include "CONSTANTS.cpp"
 
 double **newMatrix (int line, int column)
@@ -19,11 +20,12 @@ double **newMatrix (int line, int column)
 
 double **mulNum (double **firstMatrix, int n, int m, double digit)
 {
+	double **C1 = newMatrix (n, m);
     for (int i = 0; i < n; ++i)
         for (int j = 0; j < m; ++j)
-        	firstMatrix[i][j] *= digit;
+        	C1[i][j] = firstMatrix[i][j] * digit;
 
-    return firstMatrix;
+    return C1;
 }
 
 double determinate (double **a, int size)
@@ -268,65 +270,42 @@ void typeMatr (double **firstMatrix, int n, int m)
 
 void stoi (string inputString, int &k)
 {
-	k = 0;
-	bool flag = 1;
-	
-	for (int i = inputString.size() - 1; i >= 0 && flag; --i)
+	for (int i = inputString.size() - 1; i >= 0; --i)
 	{
-		if (inputString[i] >= '0' && inputString[i] <= '9') 
-			k = k * 10 + (inputString[i]-'0');
-		else 
-			flag = 0;
+		if (inputString[i] < '0' || inputString[i] > '9') 
+		{
+			cout << "Incorrect input (int), try again: ";
+		    cin >> inputString;
+		    stoi (inputString, k);
+		}
 	}
 	
-	if (!flag)
-	{
-		cout << "Incorrect input (int), try again: ";
-		cin >> inputString;
-		stoi (inputString, k);
-	}
+	istringstream ist(inputString);
+    ist >> k;
+    
 }
 
 void stod (string inputString, double &k)
 {
-	k = 0;
-	bool flag = 1;
-	int i = 0, count = 0;
-	
-	while (i < inputString.size() && inputString[i] != '.')
+	int countDots = 0;
+	for (int i = inputString.size() - 1; i >= 0; --i)
 	{
-		if (inputString[i] >= '0' && inputString[i] <= '9') 
-			k = k * 10 + (inputString[i] - '0');
-		else 
-			flag=0;
-		++i;
+		if(inputString[i] == '.') countDots++;
+		if ( (inputString[i] < '0' || inputString[i] > '9') && inputString[i] != '.') 
+		{
+			cout << "Incorrect input (int), try again: ";
+		    cin >> inputString;
+		    stod (inputString, k);
+		}
 	}
-	
-	++i;
-	
-	while (i < inputString.size())
+	if (countDots > 1)
 	{
-		++count;
-		if (inputString[i] >= '0' && inputString[i] <= '9') 
-			k = k * 10 + (inputString[i] - '0');
-		else 
-			flag = 0;
-		++i;
-	}
-	
-	if (count != 0)
-	{
-		double ten = 1;
-		for (i = 0; i < count; ++i) 
-			ten *= 10;
-		k /= ten;
-	}
-	
-	if (!flag)
-	{
-		cout << "Incorrect input (double), try again: ";
+		cout << "Incorrect input (int), try again: ";
 		cin >> inputString;
 		stod (inputString, k);
 	}
+	    
+	stringstream dst(inputString);
+    dst >> k;
 }
 #endif
