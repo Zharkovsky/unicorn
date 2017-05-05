@@ -94,12 +94,12 @@ void enterMatr(double ***firstMatrix, int &line1, int &column1, double ***second
 		
 		case RANDOM_MATRIX_FILL: {
 			
-		    cout << ENTER_SIZE << FIRST_MATRIX <<endl;
+		    cout << ENTER_SIZE << FIRST_MATRIX;
 		    cin >> stringForInput;
             stoi (stringForInput, line1);
             cin >> stringForInput;
             stoi (stringForInput, column1);
-	        cout << ENTER_SIZE << SECOND_MATRIX <<endl;
+	        cout << ENTER_SIZE << SECOND_MATRIX;
 	        cin >> stringForInput;
             stoi (stringForInput, line2);
             cin >> stringForInput;

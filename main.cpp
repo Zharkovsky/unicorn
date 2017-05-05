@@ -56,6 +56,7 @@ int main()
 
                 int lineC1 = line1, columnC1 = column1;
                 double **C1 = mulNum (firstMatrix, line1, column1, number);
+                cout<<RESULT;
                 show (C1, lineC1, columnC1);
                 delMatr (C1, lineC1);
 
@@ -71,6 +72,7 @@ int main()
                 int lineC = line1, columnC = column2;
 
                 C = multiplication (firstMatrix, secondMatrix, line1, column1, line2, column2);
+                cout<<RESULT;
                 show (C, lineC, columnC);
                 delMatr (C, lineC);
 
@@ -82,6 +84,7 @@ int main()
                 int lineC2 = column1, columnC2 = line1;
                 double **C2 = newMatrix (lineC2, columnC2);
                 C2 = trans (firstMatrix, line1, column1);
+                cout<<RESULT;
                 show (C2, lineC2, columnC2);
                 delMatr (C2, lineC2);
 
@@ -108,6 +111,7 @@ int main()
                 double **C2 = newMatrix (lineC2, columnC2);
 
                 C2 = sum (firstMatrix, secondMatrix, line1, column1, line2, column2);
+                cout<<RESULT;
                 show (C2, lineC2, columnC2);
                 delMatr (C2, lineC2);
 
@@ -127,7 +131,10 @@ int main()
                 if ( line1 != column1)
                     cout << FALSE_SIZE << endl;
                 else
-                    obrMatrix(firstMatrix,line1);
+                {
+                	cout<<RESULT;
+                	obrMatrix(firstMatrix,line1);
+				}
 
                 break;
             }
@@ -161,7 +168,7 @@ int main()
         char c;
         do
         {
-            cout << SAVE_OR_NOT << endl;
+            cout << endl << SAVE_OR_NOT << endl;
             cin >> c;
             if (c != 'y' && c!= 'n')
                 cout << FALSE_COMMAND << endl;

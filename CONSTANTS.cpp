@@ -39,6 +39,8 @@ const string FALSE_COMMAND = "False command. Try again\n";
 const string FALSE_DEMENSION = "Error in dimension.(column of first matrix != line of second matrix)";
 const string FALSE_AMOUNT_OF_MATRIX = "Max number of matrix = 2. Let's work with 2 matrix!";
 
+const string RESULT = "Result:\n";
+
 enum chooseCommand {
 	EXIT_COMMAND = 0,
 	MULTIPLICATION_BY_DIGIT_COMMAND = 1,
